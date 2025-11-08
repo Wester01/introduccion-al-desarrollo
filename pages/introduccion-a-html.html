@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducción a HTML – El Arquitecto de la Web</title>
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+<body>
+    <header>
+        <div class="title-container">
+            <h1>HTML: El Arquitecto de la Web</h1>
+            <h2>¿Qué es HTML? El Esqueleto de la Página</h2>
+        </div>
+        
+        <div class="home_container">
+            <div class="home-btn">
+                <a href="../index.html"><img src="../img/home2.png" alt="Home Img"></a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section id="top">
+            <h2>1. ¿Qué es HTML? El Esqueleto de la Página</h2>
+            <p>
+                HTML (HyperText Markup Language - Lenguaje de Marcado de Hipertexto) no es un lenguaje de programación como PHP o JavaScript; es un lenguaje de marcado. 
+                Piensa en él como el esqueleto o la estructura de metal y ladrillo de cualquier edificio web.
+            </p>
+            <p>
+                HTML define la estructura y el contenido de una página web. Es la primera capa que se carga en cualquier navegador y permite jerarquizar la información de forma legible y navegable.
+            </p>
+            <h3>Usos Comunes de HTML</h3>
+            <ul>
+                <li>Creación de la estructura de documentos.</li>
+                <li>Gestión de contenido multimedia.</li>
+                <li>Creación de enlaces (hipertexto).</li>
+                <li>Recolección de datos con formularios.</li>
+            </ul>
+        </section>
+
+        <div class="separador"></div>
+
+        <section>
+            <h2>2. Sintaxis Básica: Las Etiquetas (Tags) y Elementos</h2>
+            <p>
+                La sintaxis de HTML se basa en etiquetas que envuelven el contenido para darle significado. 
+                La mayoría funcionan en pares, con una etiqueta de apertura y otra de cierre.
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>HTML</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code class="language-html">
+<span class="token tag">&lt;p&gt;</span>Esto es un párrafo<span class="token tag">&lt;/p&gt;</span>
+<span class="token tag">&lt;br&gt;</span>
+<span class="token tag">&lt;hr&gt;</span>
+<span class="token tag">&lt;img</span> <span class="token variables">src=</span><span class="token string">"logo.png"</span> <span class="token variables">alt=</span><span class="token string">"Logo de la Web"</span><span class="token tag">&gt;</span>
+                </code></pre>
+            </div>
+        </section>
+
+        <div class="separador"></div>
+
+        <section>
+            <h2>3. Atributos: Los Detalles y Personalizaciones</h2>
+            <p>
+                Los atributos proporcionan información adicional sobre los elementos. Se colocan dentro de la etiqueta de apertura con el formato nombre="valor".
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>HTML</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code class="language-html">
+<span class="token tag">&lt;header</span> <span class="token variables">id=</span><span class="token string">"cabecera-principal"</span><span class="token tag">&gt;</span>
+    <span class="token tag">&lt;button</span> <span class="token variables">class=</span><span class="token string">"btn-accion"</span><span class="token tag">&gt;</span>Comprar<span class="token tag">&lt;/button&gt;</span>
+    <span class="token tag">&lt;button</span> <span class="token variables">class=</span><span class="token string">"btn-accion"</span><span class="token tag">&gt;</span>Añadir al carrito<span class="token tag">&lt;/button&gt;</span>
+    <span class="token tag">&lt;a</span> <span class="token variables">href=</span><span class="token string">"https://google.com"</span> <span class="token variables">target=</span><span class="token string">"_blank"</span><span class="token tag">&gt;</span>Ir a Google (en nueva pestaña)<span class="token tag">&lt;/a&gt;</span>
+<span class="token tag">&lt;/header&gt;</span>
+                </code></pre>
+            </div>
+        </section>
+
+        <div class="separador"></div>
+
+        <section>
+            <h2>4. Estructura del Documento: El Plan de Construcción</h2>
+            <p>
+                Todo documento HTML moderno sigue una estructura básica para que el navegador sepa cómo interpretarlo.
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>HTML</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code class="language-html">
+<span class="token comment">&lt;!DOCTYPE html&gt;</span>
+<span class="token tag">&lt;html</span> <span class="token variables">lang=</span><span class="token string">"es"</span><span class="token tag">&gt;</span>
+<span class="token tag">&lt;head&gt;</span>
+    <span class="token tag">&lt;meta</span> <span class="token variables">charset=</span><span class="token string">"UTF-8"</span><span class="token tag">&gt;</span>
+    <span class="token tag">&lt;meta</span> <span class="token variables">name=</span><span class="token string">"viewport"</span> <span class="token variables">content=</span><span class="token string">"width=device-width, initial-scale=1.0"</span><span class="token tag">&gt;</span>
+    <span class="token tag">&lt;title&gt;</span>Mi Enciclopedia Web<span class="token tag">&lt;/title&gt;</span>
+    <span class="token tag">&lt;link</span> <span class="token variables">rel=</span><span class="token string">"stylesheet"</span> <span class="token variables">href=</span><span class="token string">"style.css"</span><span class="token tag">&gt;</span>
+<span class="token tag">&lt;/head&gt;</span>
+<span class="token tag">&lt;body&gt;</span>
+    <span class="token tag">&lt;h1&gt;</span>Bienvenido a la Web<span class="token tag">&lt;/h1&gt;</span>
+    <span class="token tag">&lt;p&gt;</span>La estructura está lista.<span class="token tag">&lt;/p&gt;</span>
+<span class="token tag">&lt;/body&gt;</span>
+<span class="token tag">&lt;/html&gt;</span>
+                </code></pre>
+            </div>
+        </section>
+
+        <div class="separador"></div>
+
+        <section>
+            <h2>5. Tipos de Elementos: En Bloque vs. En Línea</h2>
+            <p>
+                Los elementos HTML se clasifican según su comportamiento visual: de bloque o en línea.
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>HTML</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code class="language-html">
+<span class="token tag">&lt;p&gt;</span>Soy un elemento de bloque 1<span class="token tag">&lt;/p&gt;</span>
+<span class="token tag">&lt;p&gt;</span>Soy un elemento de bloque 2<span class="token tag">&lt;/p&gt;</span>
+<span class="token tag">&lt;span&gt;</span>Soy un elemento en línea 1<span class="token tag">&lt;/span&gt;</span>
+<span class="token tag">&lt;span&gt;</span>Soy un elemento en línea 2<span class="token tag">&lt;/span&gt;</span>
+                </code></pre>
+            </div>
+        </section>
+
+        <div class="separador"></div>
+
+        <section>
+            <h2>6. Semántica: El Significado de las Etiquetas</h2>
+            <p>
+                La semántica consiste en elegir la etiqueta que mejor describa el contenido. 
+                Desde HTML5, las etiquetas semánticas son fundamentales para la estructura y accesibilidad.
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>HTML</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code class="language-html">
+<span class="token tag">&lt;body&gt;</span>
+    <span class="token tag">&lt;header&gt;</span>
+        <span class="token tag">&lt;h1&gt;</span>Título del Proyecto<span class="token tag">&lt;/h1&gt;</span>
+        <span class="token tag">&lt;nav&gt;</span>
+            <span class="token tag">&lt;ul&gt;</span>
+                <span class="token tag">&lt;li&gt;&lt;a</span> <span class="token variables">href=</span><span class="token string">"#inicio"</span><span class="token tag">&gt;</span>Inicio<span class="token tag">&lt;/a&gt;&lt;/li&gt;</span>
+                <span class="token tag">&lt;li&gt;&lt;a</span> <span class="token variables">href=</span><span class="token string">"#acerca"</span><span class="token tag">&gt;</span>Acerca de<span class="token tag">&lt;/a&gt;&lt;/li&gt;</span>
+            <span class="token tag">&lt;/ul&gt;</span>
+        <span class="token tag">&lt;/nav&gt;</span>
+    <span class="token tag">&lt;/header&gt;</span>
+    <span class="token tag">&lt;main&gt;</span>
+        <span class="token tag">&lt;section&gt;</span>
+            <span class="token tag">&lt;h2&gt;</span>Capítulo Uno: Fundamentos<span class="token tag">&lt;/h2&gt;</span>
+            <span class="token tag">&lt;p&gt;</span>Aquí va el texto explicativo...<span class="token tag">&lt;/p&gt;</span>
+        <span class="token tag">&lt;/section&gt;</span>
+    <span class="token tag">&lt;/main&gt;</span>
+    <span class="token tag">&lt;footer&gt;</span>
+        <span class="token tag">&lt;p&gt;</span>&amp;copy; 2025 Mi Enciclopedia Web<span class="token tag">&lt;/p&gt;</span>
+    <span class="token tag">&lt;/footer&gt;</span>
+<span class="token tag">&lt;/body&gt;</span>
+                </code></pre>
+            </div>
+        </section>
+
+        <div class="separador"></div>
+
+        <section>
+            <h2>7. Enlaces e Imágenes: La Conexión y la Decoración</h2>
+            <p>
+                Los enlaces y las imágenes son esenciales para conectar páginas y añadir contenido visual a la web.
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>HTML</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code class="language-html">
+<span class="token tag">&lt;a</span> <span class="token variables">href=</span><span class="token string">"https://google.com"</span><span class="token tag">&gt;</span>Buscar en Google<span class="token tag">&lt;/a&gt;</span>
+<span class="token tag">&lt;a</span> <span class="token variables">href=</span><span class="token string">"contacto.html"</span><span class="token tag">&gt;</span>Ir al formulario de contacto<span class="token tag">&lt;/a&gt;</span>
+<span class="token tag">&lt;a</span> <span class="token variables">href=</span><span class="token string">"#seccion-5"</span><span class="token tag">&gt;</span>Saltar a la Sección 5<span class="token tag">&lt;/a&gt;</span>
+<span class="token tag">&lt;img</span> <span class="token variables">src=</span><span class="token string">"/img/foto-perfil.jpg"</span> <span class="token variables">alt=</span><span class="token string">"Retrato del autor de la enciclopedia"</span><span class="token tag">&gt;</span>
+                </code></pre>
+            </div>
+        </section>
+
+        <div class="separador"></div>
+
+        <section>
+            <h2>8. Formularios: La Interacción con PHP y MySQL</h2>
+            <p>
+                Los formularios permiten a los usuarios enviar información al servidor. 
+                El elemento <span>&lt;form&gt;</span> actúa como contenedor de los campos de entrada.
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>HTML</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code class="language-html">
+<span class="token tag">&lt;form</span> <span class="token variables">action=</span><span class="token string">"procesar.php"</span> <span class="token variables">method=</span><span class="token string">"POST"</span><span class="token tag">&gt;</span>
+    <span class="token tag">&lt;label</span> <span class="token variables">for=</span><span class="token string">"campo-nombre"</span><span class="token tag">&gt;</span>Tu Nombre:<span class="token tag">&lt;/label&gt;</span>
+    <span class="token tag">&lt;input</span> <span class="token variables">type=</span><span class="token string">"text"</span> <span class="token variables">id=</span><span class="token string">"campo-nombre"</span> <span class="token variables">name=</span><span class="token string">"nombre_usuario"</span> <span class="token variables">required</span><span class="token tag">&gt;</span>
+    <span class="token tag">&lt;br&gt;</span>
+    <span class="token tag">&lt;label</span> <span class="token variables">for=</span><span class="token string">"campo-email"</span><span class="token tag">&gt;</span>Tu Email:<span class="token tag">&lt;/label&gt;</span>
+    <span class="token tag">&lt;input</span> <span class="token variables">type=</span><span class="token string">"email"</span> <span class="token variables">id=</span><span class="token string">"campo-email"</span> <span class="token variables">name=</span><span class="token string">"correo_usuario"</span> <span class="token variables">required</span><span class="token tag">&gt;</span>
+    <span class="token tag">&lt;br&gt;</span>
+    <span class="token tag">&lt;input</span> <span class="token variables">type=</span><span class="token string">"submit"</span> <span class="token variables">value=</span><span class="token string">"Enviar Datos"</span><span class="token tag">&gt;</span>
+<span class="token tag">&lt;/form&gt;</span>
+                </code></pre>
+            </div>
+        </section>
+    </main>
+    <!-- Pelota flotante -->
+    <div class="float-btn" id="floatBtn">☰</div>
+
+    <!-- Menú flotante -->
+    <nav class="float-menu" id="floatMenu"></nav>
+    <script src="../script/script.js"></script>
+</body>
+</html>

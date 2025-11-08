@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repaso de JavaScript - Básicos</title>
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+<body>
+    <header>
+        <div class="title-container">
+            <h1>
+                MySQL
+            </h1>
+            <h2>
+                El Almacén y la Despensa de la Web
+            </h2>
+        </div>
+        <div class="home_container">
+            <div class="home-btn">
+                <a href="../index.html"><img src="../img/home2.png" alt="Home Img"></a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section>
+            <h2>1. Introducción a MySQL</h2>
+            <h3>1.1 ¿Qué es?</h3>
+            <p>
+                MySQL es un Sistema Gestor de Bases de Datos Relacionales (RDBMS). No es un lenguaje de programación como PHP; es un software que se encarga de almacenar, gestionar y recuperar grandes cantidades de información de forma estructurada. Piensa en MySQL como el Archivista Experto que trabaja en una enorme bodega de archivos (la base de datos).
+            </p>
+            <h3>1.2 SQL: El Lenguaje para Hablar con el Archivista</h3>
+            <p>
+                Para interactuar con MySQL, usamos **SQL** (Structured Query Language - Lenguaje de Consulta Estructurada). SQL es el único idioma que entiende el Archivista. Todas las acciones (guardar, buscar, modificar, borrar) se hacen mediante consultas SQL.
+            </p>
+            <p>
+                Usos Comunes de MySQL en Desarrollo Web:
+                <ul>
+                    <li>Gestión de Usuarios: Almacenar nombres, contraseñas (encriptadas) y roles.</li>
+                    <li>Inventarios y Catálogos: Guardar listas de productos, precios y descripciones.</li>
+                    <li>Contenido Dinámico: Almacenar artículos de un blog, comentarios o mensajes.</li>
+                </ul>
+            </p>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>2. Estructura Básica: Bases de Datos, Tablas y Campos</h2>
+            <p>
+                La información en MySQL no se guarda al azar; se organiza jerárquicamente.
+            </p>
+            <h3>2.1 Base de Datos (Database - El Archivador Principal)</h3>
+            <p>
+                Es el contenedor más grande. Una Base de Datos agrupa lógicamente toda la información de un proyecto (ej. mi_enciclopedia_web).
+            </p>
+            <h3>2.2 Tablas (Tables - Los Archiveros)</h3>
+            <p>
+                Dentro de la Base de Datos, la información se divide en Tablas. Cada Tabla almacena datos de un único tipo de entidad (ej. usuarios, articulos, comentarios).
+            </p>
+            <h3>2.3 Campos (Columns - Los Cajones del Archivero)</h3>
+            <p>
+                Cada Tabla tiene Campos (o Columnas), que definen el tipo de dato que se guardará. Por ejemplo, la tabla usuarios puede tener los campos id, nombre, email y fecha_registro.
+            </p>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>2.4 Registros (Rows - Los Documentos)</h3>
+            <p>
+                Cada fila en una Tabla es un Registro o tupla, que representa una instancia única de esa entidad (ej. un usuario específico o un artículo).
+            </p>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>3. Tipos de Datos Esenciales: Definiendo la Información</h2>
+            <p>
+                Al crear una Tabla, debemos ser muy estrictos con el tipo de dato que acepta cada Campo. Esto asegura la integridad y optimiza el almacenamiento.
+            </p>
+            <div class="operator-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Categoría</th>
+                            <th>Tipo de Dato</th>
+                            <th>Propósito</th>
+                            <th>Ejemplo de Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Numéricos</td>
+                            <td>INT</td>
+                            <td>Números enteros (edades, IDs, cantidades).</td>
+                            <td>10, 4500</td>
+                        </tr>
+                        <tr>
+                            <td>Numéricos</td>
+                            <td>FLOAT/DOUBLE</td>
+                            <td>Números con decimales (precios, coordenadas).</td>
+                            <td>19.99, 3.1416</td>
+                        </tr>
+                        <tr>
+                            <td>Texto</td>
+                            <td>VARCHAR(N)</td>
+                            <td>Cadenas de texto de longitud variable, donde N es el máximo de caracteres (nombres, títulos).</td>
+                            <td>'Pedro', 'Título'</td>
+                        </tr>
+                        <tr>
+                            <td>Texto</td>
+                            <td>TEXT</td>
+                            <td>Cadenas de texto largas (descripciones, cuerpos de artículos).</td>
+                            <td>El texto completo de este artículo.</td>
+                        </tr>
+                        <tr>
+                            <td>Fecha/Hora</td>
+                            <td>DATE</td>
+                            <td>Almacena solo la fecha (año, mes, día).</td>
+                            <td>'2025-11-07'</td>
+                        </tr>
+                        <tr>
+                            <td>Fecha/Hora</td>
+                            <td>DATETIME</td>
+                            <td>Almacena fecha y hora (para registros de actividad).</td>
+                            <td>'2025-11-07 15:40:00'</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>4. Claves: La Identidad y la Relación</h2>
+            <h3>4.1 Clave Primaria (PRIMARY KEY) - La Cédula de Identidad</h3>
+            <p>
+                Es un campo (o conjunto de campos) que identifica de forma única cada Registro en la Tabla. No puede tener valores duplicados ni nulos. Regla: Cada tabla debe tener una única Clave Primaria. Es la forma más rápida de encontrar cualquier registro.
+            </p>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>4.2 Clave Foránea (FOREIGN KEY) - El Conector de Relaciones</h3>
+            <p>
+                Es un campo en una Tabla que referencia (apunta) a la Clave Primaria de otra Tabla. Es el mecanismo que crea las Relaciones entre los datos.
+            </p>
+            <p>
+                Ejemplo: En la tabla `comentarios`, el campo `id_articulo` sería una Clave Foránea que apunta al `id` de la tabla `articulos`. Esto significa que el comentario "pertenece a" ese artículo.
+            </p>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>5. El Lenguaje de Definición de Datos (DDL): Construyendo Tablas</h2>
+            <h3>5.1 CREATE DATABASE y USE</h3>
+            <p>
+                El DDL (Data Definition Language) es la parte de SQL que se usa para crear, modificar y eliminar la estructura de la base de datos (las Tablas y Campos). Para empezar, creamos la Base de Datos y la seleccionamos.
+            </p>
+            <div class="code-block">
+            <div class="code-toolbar">
+                <span>SQL</span>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+            </div>
+            <pre><code>
+                <span class="token comment">-- 1. Crear la Base de Datos (si no existe)</span>
+                <span class="token keyword">CREATE DATABASE</span> <span class="token keyword">IF NOT EXISTS</span> <span class="token string">enciclopedia_dev</span>;
+
+                <span class="token comment">-- 2. Seleccionar la Base de Datos para trabajar en ella</span>
+                <span class="token keyword">USE</span> <span class="token string">enciclopedia_dev</span>;
+            </code></pre>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>5.2 CREATE TABLE (Construyendo el Archivero)</h3>
+            <p>
+                Aquí definimos el nombre de la Tabla, los Campos que tendrá y sus restricciones (como la Clave Primaria).
+            </p>
+            <p>
+                Ejemplo: Creación de la tabla de Artículos
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>SQL</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">CREATE TABLE</span> <span class="token string">articulos</span> (
+                    <span class="token comment">-- ID autoincremental, único y clave principal</span>
+                    <span class="token property">id</span> <span class="token keyword">INT</span>(11) <span class="token keyword">NOT NULL</span> <span class="token keyword">AUTO_INCREMENT</span>,
+                    <span class="token comment">-- Título del artículo, máximo 200 caracteres, y no puede ser nulo</span>
+                    <span class="token property">titulo</span> <span class="token keyword">VARCHAR</span>(200) <span class="token keyword">NOT NULL</span>,
+                    <span class="token comment">-- Cuerpo del texto (usamos TEXT para longitud)</span>
+                    <span class="token property">contenido</span> <span class="token keyword">TEXT</span> <span class="token keyword">NOT NULL</span>,
+                    <span class="token comment">-- Clave Foránea que conecta con la tabla 'usuarios' (autor del artículo)</span>
+                    <span class="token property">autor_id</span> <span class="token keyword">INT</span>(11) <span class="token keyword">NOT NULL</span>,
+                    <span class="token comment">-- Timestamp para guardar la fecha y hora de creación automáticamente</span>
+                    <span class="token property">fecha_creacion</span> <span class="token keyword">DATETIME</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CURRENT_TIMESTAMP</span>,
+                    <span class="token comment">-- Definición de las Claves</span>
+                    <span class="token keyword">PRIMARY KEY</span> (<span class="token property">id</span>),
+                    <span class="token comment">-- Definición de la Clave Foránea que enlaza al ID de la tabla 'usuarios'</span>
+                    <span class="token keyword">FOREIGN KEY</span> (<span class="token property">autor_id</span>) <span class="token keyword">REFERENCES</span> <span class="token string">usuarios</span>(<span class="token property">id</span>)
+                );
+                </code></pre>
+            </div>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>6. El Lenguaje de Manipulación de Datos (DML): El CRUD</h2>
+            <p>
+                El DML (Data Manipulation Language) es la parte de SQL que se usa para manejar la información real dentro de las tablas. **CRUD** son las cuatro operaciones básicas: Crear, Recuperar, Update (Actualizar) y Delete (Borrar).
+            </p>
+            <h3>6.1 INSERT (Crear - Guardar un Documento)</h3>
+            <p>
+                Añade nuevos registros (filas) a una tabla.
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>SQL</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">INSERT INTO</span> <span class="token string">articulos</span> (<span class="token property">titulo</span>, <span class="token property">contenido</span>, <span class="token property">autor_id</span>)
+                <span class="token keyword">VALUES</span> (<span class="token string">'Fundamentos de MySQL'</span>, <span class="token string">'Contenido completo del artículo...'</span>, <span class="token number">1</span>);
+                </code></pre>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>6.2 SELECT (Recuperar - Buscar Documentos)</h3>
+            <p>
+                La consulta más usada. Permite obtener datos de una o más tablas.
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>SQL</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">SELECT</span> <span class="token property">titulo</span>, <span class="token property">fecha_creacion</span> <span class="token keyword">FROM</span> <span class="token string">articulos</span>;
+                </code></pre>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>6.3 UPDATE (Actualizar - Modificar un Documento)</h3>
+            <p>
+                Modifica los datos de los registros que cumplen una condición. ¡Siempre usar **WHERE**!
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>SQL</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token comment">-- Actualiza el título del artículo que tenga ID=5</span>
+                <span class="token keyword">UPDATE</span> <span class="token string">articulos</span>
+                <span class="token keyword">SET</span> <span class="token property">titulo</span> = <span class="token string">'El nuevo título editado'</span>
+                <span class="token keyword">WHERE</span> <span class="token property">id</span>=<span class="token number">5</span>;
+                </code></pre>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>6.4 DELETE (Borrar - Destruir un Documento)</h3>
+            <p>
+                Elimina registros. ¡Siempre usar **WHERE**! Sin WHERE, ¡borrarás toda la tabla!
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>SQL</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token comment">-- Borra el registro del artículo que tenga ID=10</span>
+                <span class="token keyword">DELETE FROM</span> <span class="token string">articulos</span>
+                <span class="token keyword">WHERE</span> <span class="token property">id</span> = <span class="token number">10</span>;
+                </code></pre>
+            </div>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>7. La Cláusula WHERE: Filtrando la Búsqueda</h2>
+            <p>
+                La cláusula **WHERE** es esencial en **SELECT**, **UPDATE** y **DELETE**. Actúa como un filtro, especificando la condición que los registros deben cumplir para ser seleccionados o modificados.
+            </p>
+            <h3>7.1 Operadores de Comparación</h3>
+            <p>
+                Usados para establecer las condiciones de filtrado (igualdad, mayor que, etc.).
+            </p>
+            <div class="operator-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Operador</th>
+                            <th>Significado</th>
+                            <th>Ejemplo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>`=`</td>
+                            <td>Igual a</td>
+                            <td>`WHERE id=5`</td>
+                        </tr>
+                        <tr>
+                            <td>`>` o `<`</td>
+                            <td>Mayor o menor que</td>
+                            <td>`WHERE visitas > 1000`</td>
+                        </tr>
+                        <tr>
+                            <td>`!=` o `<>`</td>
+                            <td>Diferente de</td>
+                            <td>`WHERE autor_id != 1`</td>
+                        </tr>
+                        <tr>
+                            <td>`LIKE`</td>
+                            <td>Búsqueda de patrones (uso con `%`)</td>
+                            <td>`WHERE titulo LIKE 'CSS%'` (Empieza por CSS)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>7.2 Operadores Lógicos (AND, OR)</h3>
+            <p>
+                Permiten combinar múltiples condiciones de filtrado.
+            </p>
+            <p>
+                Ejemplo: Buscar artículos publicados después de 2024 y con menos de 50 comentarios.
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>SQL</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">SELECT</span> <span class="token property">titulo</span>, <span class="token property">fecha_creacion</span>, <span class="token property">comentarios</span>
+                <span class="token keyword">FROM</span> <span class="token string">articulos</span>
+                <span class="token keyword">WHERE</span>
+                    <span class="token property">fecha_creacion</span> > <span class="token string">'2024-01-01'</span> <span class="token comment">-- Condición 1: Mayor a la fecha</span>
+                    <span class="token keyword">AND</span> <span class="token property">comentarios</span> < <span class="token number">50</span>; <span class="token comment">-- Condición 2: Y (AND) menor a 50</span>
+                </code></pre>
+            </div>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>8. Ordenamiento y Agrupación: Organizando el Catálogo</h2>
+            <p>
+                Dominar estas propiedades es clave para cualquier diseño.
+            </p>
+            <h3>8.1 ORDER BY (Ordenando la Lista)</h3>
+            <p>
+                Esta cláusula se utiliza en la consulta **SELECT** para ordenar el conjunto de resultados por una o más columnas.
+            </p>
+            <div class="operator-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dirección</th>
+                            <th>Significado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ASC</td>
+                            <td>Ascendente (A-Z, 1-10) - Es el valor por defecto.</td>
+                        </tr>
+                        <tr>
+                            <td>DESC</td>
+                            <td>Descendente (Z-A, 10-1)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <p>
+                Listar todos los artículos, ordenados primero por la fecha más reciente (DESC) y si dos tienen la misma fecha, ordenarlos por título alfabéticamente (ASC).
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>SQL</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">SELECT</span> <span class="token property">titulo</span>, <span class="token property">fecha_creacion</span>
+                <span class="token keyword">FROM</span> <span class="token string">articulos</span>
+                <span class="token keyword">ORDER BY</span> <span class="token property">fecha_creacion</span> <span class="token keyword">DESC</span>, <span class="token property">titulo</span> <span class="token keyword">ASC</span>;
+                </code></pre>
+            </div>
+            <h3>8.2 GROUP BY (Agrupando por Categorías)</h3>
+            <p>
+                Agrupa filas que tienen los mismos valores en una o más columnas en un solo resumen. Se utiliza casi siempre con **Funciones de Agregación** (como COUNT, SUM, AVG).
+            </p>
+            <p>
+                Contar cuántos artículos ha escrito cada autor
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>SQL</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">SELECT</span> <span class="token property">autor_id</span>, <span class="token function">COUNT</span>(<span class="token property">id</span>) <span class="token keyword">AS</span> <span class="token property">total_articulos</span>
+                <span class="token keyword">FROM</span> <span class="token string">articulos</span>
+                <span class="token keyword">GROUP BY</span> <span class="token property">autor_id</span>;
+                <span class="token comment">-- Resultado: Muestra el ID del autor y la suma de sus artículos.</span>
+                </code></pre>
+            </div>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>9. Funciones de Agregación: Haciendo Resúmenes y Cálculos</h2>
+            <h3>9.1 Propósito</h3>
+            <p>
+                Las funciones de agregación operan sobre un conjunto de filas y devuelven un único valor de resumen.
+            </p>
+            <div class="operator-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Función</th>
+                            <th>Propósito</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>COUNT()</td>
+                            <td>Cuenta el número de filas o valores no nulos.</td>
+                        </tr>
+                        <tr>
+                            <td>SUM()</td>
+                            <td>Calcula la suma total de valores en una columna.</td>
+                        </tr>
+                        <tr>
+                            <td>AVG()</td>
+                            <td>Calcula el promedio (media) de valores.</td>
+                        </tr>
+                        <tr>
+                            <td>MAX()</td>
+                            <td>Encuentra el valor máximo.</td>
+                        </tr>
+                        <tr>
+                            <td>MIN()</td>
+                            <td>Encuentra el valor mínimo.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>9.2 Ejemplo</h3>
+            <p>
+                Encontrar el artículo con más visitas y el total de artículos.
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>SQL</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">SELECT</span>
+                    <span class="token function">COUNT</span>(<span class="token property">id</span>) <span class="token keyword">AS</span> <span class="token property">total_articulos</span>, <span class="token comment">-- Cuenta el número total de artículos</span>
+                    <span class="token function">MAX</span>(<span class="token property">visitas</span>) <span class="token keyword">AS</span> <span class="token property">maxima_visita</span> <span class="token comment">-- Encuentra la visita máxima</span>
+                <span class="token keyword">FROM</span> <span class="token string">articulos</span>;
+                </code></pre>
+            </div>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>10. JOINs: Conectando Archiveros (Tablas Relacionadas)</h2>
+            <h3>10.1 INNER JOIN (La Intersección Exacta)</h3>
+            <p>
+                Los **JOIN** son esenciales porque permiten combinar filas de dos o más tablas basándose en un campo relacionado (normalmente una Clave Foránea). Es la forma de obtener datos que están separados. **INNER JOIN** devuelve solo los registros que tienen coincidencias en ambas tablas. Es el más común.
+            </p>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>10.2 LEFT JOIN (Mantener el Lado Izquierdo)</h3>
+            <p>
+                Devuelve todos los registros de la Tabla de la izquierda, y los registros coincidentes de la Tabla de la derecha. Si no hay coincidencia, los campos de la derecha serán **NULL**.
+            </p>
+            <p>
+                Ejemplo: Saber el Nombre del Autor (Conectando Tablas). Quiero el título del artículo y el nombre del autor, que están en tablas separadas.
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>SQL</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">SELECT</span>
+                    <span class="token string">A</span>.<span class="token property">titulo</span> <span class="token keyword">AS</span> <span class="token property">Titulo_Articulo</span>,
+                    <span class="token string">U</span>.<span class="token property">nombre</span> <span class="token keyword">AS</span> <span class="token property">Nombre_Autor</span>
+                <span class="token keyword">FROM</span>
+                    <span class="token string">articulos</span> <span class="token keyword">AS</span> <span class="token string">A</span>
+                <span class="token keyword">INNER JOIN</span>
+                    <span class="token string">usuarios</span> <span class="token keyword">AS</span> <span class="token string">U</span> <span class="token keyword">ON</span> <span class="token string">A</span>.<span class="token property">autor_id</span> = <span class="token string">U</span>.<span class="token property">id</span>;
+                <span class="token comment">-- Alias (A y U) para simplificar la escritura.</span>
+                <span class="token comment">-- Conexión basada en la Clave Foránea</span>
+                <span class="token comment">-- Resultado: Una lista con el título del artículo y el nombre completo del autor.</span>
+                </code></pre>
+            </div>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>11. Optimización y Seguridad Inicial</h2>
+            <h3>11.1 Índices (INDEX) - El Cajón de Búsqueda Rápida</h3>
+            <p>
+                Un Índice es una estructura de datos que mejora la velocidad de las operaciones de recuperación de datos. Piensa en el índice de un libro: te permite saltar directamente a la página en lugar de leer todo el libro. Las Claves Primarias y Foráneas ya tienen índices implícitos.
+            </p>
+            <p>
+                Recomendación: Crea índices en cualquier columna que uses frecuentemente en tu cláusula **WHERE** u **ORDER BY**.
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>SQL</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                -- Crear un índice en la columna 'titulo' para acelerar las búsquedas por título
+                CREATE INDEX idx_titulo ON articulos (titulo);
+                </code></pre>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>11.2 Inyección SQL (La Peligrosa Brecha de Seguridad)</h3>
+            <p>
+                La **Inyección SQL** es el ataque más común a las bases de datos. Ocurre cuando un atacante introduce código SQL malicioso a través de un campo de entrada (como un formulario). Si PHP no valida y limpia la entrada, el atacante puede ejecutar consultas no autorizadas (como borrar una tabla).
+            </p>
+            <p>
+                Solución (PHP): Para prevenir esto, usa **sentencias preparadas** (Prepared Statements) con la librería MySQLi o PDO. Estas sentencias separan el comando SQL de los datos que ingresa el usuario, asegurando que los datos siempre sean tratados como datos y nunca como código ejecutable. (Visto en PHP punto 10).
+            </p>
+        </section>
+    </main>
+    <div class="float-btn" id="floatBtn">☰</div>
+
+    <nav class="float-menu" id="floatMenu"></nav>
+    <script src="../script/script.js"></script>
+</body>
+</html>

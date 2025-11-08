@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repaso de JavaScript - Básicos</title>
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+<body>
+    <header>
+        <div class="title-container">
+            <h1>
+                XAMPP
+            </h1>
+            <h2>
+                La Estación de Trabajo Local
+            </h2>
+        </div>
+        <div class="home_container">
+            <div class="home-btn">
+                <a href="../index.html"><img src="../img/home2.png" alt="Home Img"></a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section id="top">
+            <h2>1. Introducción a XAMPP</h2>
+            <h3>1.1 ¿Qué es XAMPP? El Taller de Pruebas Personal</h3>
+            <p>
+                XAMPP no es un lenguaje ni una base de datos; es un paquete de software de código abierto (open source) que te permite crear un servidor web local en tu propio ordenador. Es esencialmente tu Taller de Pruebas privado, donde puedes construir y ejecutar tus aplicaciones web (PHP y MySQL) sin necesidad de estar conectado a Internet.
+            </p>
+            <h3>1.2 Componentes Esenciales</h3>
+            <p>
+                El acrónimo XAMPP explica qué componentes incluye este paquete:
+            </p>
+            <div class="operator-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Letra</th>
+                            <th>Componente</th>
+                            <th>Función en el desarrollo web</th>
+                            <th>Analogía</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>X</td>
+                            <td>Cross-platform</td>
+                            <td>Funciona en cualquier sistema operativo (Windows, macOS, Linux).</td>
+                            <td>Compatibilidad universal.</td>
+                        </tr>
+                        <tr>
+                            <td>A</td>
+                            <td>Apache</td>
+                            <td>El Servidor Web que procesa las solicitudes.</td>
+                            <td>El motor que pone en marcha la página.</td>
+                        </tr>
+                        <tr>
+                            <td>M</td>
+                            <td>MySQL/MariaDB</td>
+                            <td>El Gestor de Base de Datos donde se guarda la información.</td>
+                            <td>El Archivista (visto en el tema MySQL).</td>
+                        </tr>
+                        <tr>
+                            <td>P</td>
+                            <td>PHP</td>
+                            <td>El Lenguaje de Scripting del lado del servidor.</td>
+                            <td>El Chef (visto en el tema PHP).</td>
+                        </tr>
+                        <tr>
+                            <td>P</td>
+                            <td>Perl</td>
+                            <td>Otro lenguaje de scripting (menos usado actualmente en web).</td>
+                            <td>Herramienta de propósito general.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <p>
+                En resumen: XAMPP instala y configura todos los componentes esenciales para que el código PHP se ejecute y pueda hablar con la base de datos MySQL en tu máquina.
+            </p>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>2. Instalación: Poniendo en Marcha el Taller</h2>
+            <p>
+                La instalación es sencilla, pero requiere atención en algunos puntos.
+            </p>
+            <h3>2.1 Descarga del Software</h3>
+            <p>
+                Visita el sitio web oficial de Apache Friends y descarga la versión adecuada para tu sistema operativo (Windows, macOS o Linux).
+            </p>
+            <h3>2.2 Proceso de Instalación (El Clásico "Siguiente, Siguiente...")</h3>
+            <p>
+                <ol>
+                    <li>Ejecutar el instalador.</li>
+                    <li>Selección de Componentes: Asegúrate de que al menos Apache, MySQL y PHP estén seleccionados.</li>
+                    <li>Ubicación de Instalación: Se recomienda instalar XAMPP en la raíz de tu disco duro (ej. C:\xampp en Windows o /Applications/XAMPP en macOS) para evitar problemas de permisos.</li>
+                    <li>Finalizar: Una vez terminada, el instalador te preguntará si deseas iniciar el Panel de Control (Control Panel).</li>
+                </ol>
+            </p>
+            <h3>2.3 Verificación de la Instalación</h3>
+            <p>
+                Para confirmar que todo funciona, abre tu navegador y escribe en la barra de direcciones:
+            </p>
+            <p>
+                <code>http://localhost</code>
+            </p>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <p>
+                Si ves la página de bienvenida de XAMPP, ¡el motor Apache está funcionando correctamente!
+            </p>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>3. El Panel de Control: Manejando los Servicios</h2>
+            <p>
+                El Panel de Control de XAMPP es tu centro de mando. Desde aquí, inicias, detienes y gestionas los componentes principales (Apache y MySQL).
+            </p>
+            <h3>3.1 Iniciar/Detener Servicios</h3>
+            <p>
+                Para iniciar el entorno de desarrollo, debes hacer clic en el botón "Start" al lado de:
+            </p>
+            <p>
+                <ol>
+                    <li><strong>Apache</strong>: Para que tu servidor web esté activo.</li>
+                    <li><strong>MySQL</strong>: Para que la base de datos esté disponible para PHP.</li>
+                </ol>
+            </p>
+            <p>
+                Cuando un servicio se inicia correctamente, el nombre del módulo y sus LEDs asociados se vuelven verdes. Si fallan, se pondrán rojos o amarillos (ver sección de Errores).
+            </p>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>3.2 Botones de Acceso Rápido</h3>
+            <p>
+                <ul>
+                    <li><strong>Explorer:</strong> Abre directamente la carpeta principal de XAMPP.</li>
+                    <li><strong>Shell:</strong> Abre la consola de comandos para ejecutar comandos avanzados de MySQL o PHP.</li>
+                    <li><strong>Admin (Apache):</strong> Abre <code>http://localhost</code>.</li>
+                    <li><strong>Admin (MySQL):</strong> Abre phpMyAdmin.</li>
+                </ul>
+            </p>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>4. La Carpeta Clave: htdocs (La Raíz de tu Proyecto)</h2>
+            <h3>4.1 Concepto Fundamental y Creación de Proyecto</h3>
+            <p>
+                Dentro de la carpeta de instalación de XAMPP, hay una subcarpeta crítica: <strong>htdocs</strong>.
+            </p>
+            <p>
+                <strong>Concepto Fundamental:</strong> La carpeta htdocs es la raíz del servidor web Apache. Cualquier archivo PHP, HTML o CSS que quieras ejecutar o visitar a través de <code>http://localhost</code> DEBE estar dentro de htdocs o en una subcarpeta dentro de ella.
+            </p>
+            <p>
+                Para mantener la organización, nunca trabajes directamente en htdocs. Crea una subcarpeta para cada proyecto.
+            </p>
+            <p>
+                <strong>Ruta de ejemplo:</strong>
+            </p>
+            <p>
+                <code>C:\xampp\htdocs\mi_primer_proyecto\</code>
+            </p>
+            <p>
+                Para visitar este proyecto en el navegador, usarías la URL:
+            </p>
+            <p>
+                <code>http://localhost/mi_primer_proyecto/</code>
+            </p>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <p>
+                Si el archivo principal de tu proyecto se llama <strong>index.php</strong> o <strong>index.html</strong>, el navegador lo abrirá automáticamente.
+            </p>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>5. phpMyAdmin: La Interfaz Gráfica para MySQL</h2>
+            <p>
+                Aunque MySQL se maneja con el lenguaje SQL (visto en el tema anterior), phpMyAdmin te ofrece una interfaz gráfica (GUI) para manejar tu base de datos sin escribir código SQL para las tareas básicas.
+            </p>
+            <h3>5.1 Acceso a phpMyAdmin</h3>
+            <p>
+                Desde el Panel de Control de XAMPP, haz clic en el botón "Admin" de la línea de MySQL. Se abrirá en tu navegador en la URL: <code>http://localhost/phpmyadmin/</code>.
+            </p>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>5.2 Usos Fundamentales</h3>
+            <p>
+                <ul>
+                    <li><strong>Crear Bases de Datos:</strong> Botón "New" o "Nueva" en el menú de la izquierda.</li>
+                    <li><strong>Crear Tablas:</strong> Definir los campos, tipos de datos y claves primarias para tus entidades.</li>
+                    <li><strong>Insertar/Editar Registros:</strong> Introducir datos manualmente en una tabla para hacer pruebas.</li>
+                    <li><strong>Pestaña SQL:</strong> Si sabes SQL, aquí puedes escribir y ejecutar directamente tus consultas (<code>SELECT</code>, <code>INSERT</code>, etc.).</li>
+                </ul>
+            </p>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>6. Configuración de Puertos: El Conflicto Común</h2>
+            <p>
+                El problema más frecuente al iniciar XAMPP es el Conflicto de Puertos.
+            </p>
+            <h3>6.1 ¿Qué es un Puerto?</h3>
+            <p>
+                Los puertos son "canales" digitales a través de los cuales las aplicaciones se comunican. Por defecto, Apache usa el puerto 80, y MySQL usa el puerto 3306.
+            </p>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>6.2 El Error: Puerto 80 Ocupado</h3>
+            <p>
+                A menudo, otra aplicación (como Skype, VMware o el propio Servicio de Publicación Web de Windows) ya está usando el puerto 80. Cuando intentas iniciar Apache, verás un error y la luz se quedará en rojo/amarillo.
+            </p>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>6.3 Solución (Cambiando el Puerto de Apache)</h3>
+            <p>
+                La forma más limpia es cambiar el puerto por defecto de Apache a uno menos común (ej. 8080).
+            </p>
+            <ol>
+                <li>En el Panel de Control de XAMPP, haz clic en el botón "Config" de la línea de Apache y selecciona **httpd.conf**.</li>
+                <li>Busca la línea:</li>
+                <div class="code-block">
+                    <div class="code-toolbar">
+                        <span>CONFIG</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                    </div>
+                    <pre><code>
+                        Listen 80
+                    </code></pre>
+                </div>
+                <li>Cámbiala por:</li>
+                <div class="code-block">
+                    <div class="code-toolbar">
+                        <span>CONFIG</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                    </div>
+                    <pre><code>
+                        Listen 8080
+                    </code></pre>
+                </div>
+                <li>Busca la línea:</li>
+                <div class="code-block">
+                    <div class="code-toolbar">
+                        <span>CONFIG</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                    </div>
+                    <pre><code>
+                        ServerName localhost:80
+                    </code></pre>
+                </div>
+                <li>Cámbiala por:</li>
+                <div class="code-block">
+                    <div class="code-toolbar">
+                        <span>CONFIG</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                    </div>
+                    <pre><code>
+                        ServerName localhost:8080
+                    </code></pre>
+                </div>
+                <li>Guardar el archivo y Reiniciar Apache.</li>
+            </ol>
+            <p>
+                ¡Ojo! Si cambias el puerto a 8080, deberás acceder a tus proyectos usando <code>http://localhost:8080/</code> en lugar de solo <code>http://localhost/</code>.
+            </p>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>7. Errores Comunes y Soluciones Rápidas</h2>
+            <h3>7.1 Tabla de Errores Comunes</h3>
+            <p>
+                A continuación, se presentan los problemas más frecuentes y sus soluciones.
+            </p>
+            <div class="operator-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Error Común</th>
+                            <th>Síntoma y Causa</th>
+                            <th>Solución</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>"Port 80 in use"</td>
+                            <td>Apache no inicia (luz roja). Otra aplicación está usando el puerto 80.</td>
+                            <td>Cambiar el puerto de Apache a 8080 (ver sección 6) o detener la aplicación en conflicto.</td>
+                        </tr>
+                        <tr>
+                            <td>"Apache Shutdown Unexpectedly"</td>
+                            <td>Apache se cierra inmediatamente después de iniciarse.</td>
+                            <td>Suele ser un problema de permisos. Ejecuta el Panel de Control de XAMPP como Administrador.</td>
+                        </tr>
+                        <tr>
+                            <td>MySQL no arranca</td>
+                            <td>El puerto 3306 está siendo usado (ej. por una instalación previa de MySQL).</td>
+                            <td>En el Panel de Control, haz clic en Config > **my.ini** y cambia <code>port = 3306</code> a <code>port = 3307</code>. Reinicia MySQL.</td>
+                        </tr>
+                        <tr>
+                            <td>Access Denied en PHP</td>
+                            <td>Tu código PHP no puede conectarse a MySQL.</td>
+                            <td>Verifica que el usuario y contraseña en tu código PHP (<code>$usuario = "root"; $password = "";</code>) coincidan con los valores por defecto de XAMPP.</td>
+                        </tr>
+                        <tr>
+                            <td>Error 404</td>
+                            <td>No se encuentra la página (<code>http://localhost/archivo.php</code>).</td>
+                            <td>Asegúrate de que el archivo esté guardado dentro de la carpeta **htdocs** y que la URL coincida exactamente con la ruta y el nombre del archivo (¡incluyendo mayúsculas/minúsculas!).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>8. Despliegue de tu Primer Proyecto con PHP y MySQL</h2>
+            <p>
+                Una vez que XAMPP está instalado y los servicios están corriendo, puedes unir todo lo que has aprendido.
+            </p>
+            <h3>8.1 Estructura de Proyecto</h3>
+            <p>
+                <ol>
+                    <li><strong>Crea la Carpeta:</strong> Crea una carpeta en <code>C:\xampp\htdocs\mi_proyecto</code>.</li>
+                    <li><strong>Archivos de Código:</strong> Dentro, crea **index.php** (para el código PHP) y **style.css** (para el diseño).</li>
+                </ol>
+            </p>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>8.2 Pasos para el Despliegue Local (Uniendo todos los pilares)</h3>
+            <p>
+                <ol>
+                    <li><strong>Iniciar XAMPP:</strong> Asegúrate de que Apache y MySQL estén en verde.</li>
+                    <li><strong>Crear la Base de Datos:</strong> Abre phpMyAdmin (<code>http://localhost/phpmyadmin/</code>) y crea una Base de Datos llamada, por ejemplo, **proyecto\_db**.</li>
+                    <li><strong>Código PHP (index.php):</strong> Escribe un script PHP que intente conectarse a esa Base de Datos.</li>
+                </ol>
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>PHP</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                &lt;?php
+                // 1. Configuración de la Conexión (El 'root' por defecto no tiene contraseña)
+                $servidor = "localhost";
+                $usuario = "root";
+                $password = "";
+                $bd = "proyecto_db";
+
+                // 2. Intentar la Conexión
+                $conexion = new mysqli($servidor, $usuario, $password, $bd);
+
+                // 3. Imprimir el resultado de la conexión en HTML
+                echo "&lt;!DOCTYPE html>&lt;html lang='es'>&lt;head>&lt;title>Test&lt;/title>&lt;/head>&lt;body>";
+
+                if ($conexion->connect_error) {
+                    // Usa HTML y CSS para un mensaje claro
+                    echo "&lt;h1 style='color: red;'>X ERROR de Conexión.&lt;/h1>";
+                    echo "&lt;p>Revisa el Panel de Control y los datos de login.&lt;/p>";
+                } else {
+                    echo "&lt;h1 style='color: green;'> Conexión Exitosa. ¡Servidor Listo!&lt;/h1>";
+                    echo "&lt;p>Tu motor (Apache) y tu archivista (MySQL) están hablando con PHP.&lt;/p>";
+                }
+
+                // 4. Cerrar la conexión y el HTML
+                $conexion->close();
+                echo "&lt;/body>&lt;/html>";
+                ?>
+                </code></pre>
+            </div>
+            <p>
+                <ol start="4">
+                    <li><strong>Ejecutar en el Navegador:</strong> Abre <code>http://localhost/mi_proyecto/index.php</code> (o la URL con el puerto que hayas configurado). Si todo es verde, ¡tu entorno local está funcionando perfectamente!</li>
+                </ol>
+            </p>
+        </section>
+        
+    </main>
+    <div class="float-btn" id="floatBtn">☰</div>
+
+    <nav class="float-menu" id="floatMenu"></nav>
+    <script src="../script/script.js"></script>
+</body>
+</html>

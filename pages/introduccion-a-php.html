@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repaso de JavaScript - Básicos</title>
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+<body>
+    <header>
+        <div class="title-container">
+           <h1>
+                Básicos de PHP
+            </h1>
+            <h2>
+                Nociones básicas del lenguaje
+            </h2> 
+        </div>
+        <div class="home_container">
+            <div class="home-btn">
+                <a href="../index.html"><img src="../img/home2.png" alt="Home Img"></a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section id="top">
+            <h2>1. Introducción a PHP</h2>
+            <h3>1.1 ¿Qué es PHP?</h3>
+            <p>
+                Imagina que tu sitio web es un restaurante: HTML es el menú y la decoración (estructura),
+                CSS es el diseño (estética), JavaScript es el camarero (interacciones en el navegador) y
+                PHP es el chef en la cocina (el servidor). PHP es un lenguaje de scripting del lado del servidor:
+                su código se ejecuta antes de que la página llegue al navegador. Su nombre oficial es
+                PHP: PHP Hypertext Preprocessor.
+            </p>
+
+            <h3>1.2 Usos Comunes de PHP</h3>
+            <p>
+                Entre sus usos más habituales están:
+                <ul>
+                    <li>Recolección de datos de formularios (registro, contacto).</li>
+                    <li>Generación de contenido dinámico (listas, feeds personalizados).</li>
+                    <li>Gestión de bases de datos (por ejemplo MySQL).</li>
+                    <li>Gestión de sesiones y cookies (mantener usuario autenticado).</li>
+                </ul>
+            </p>
+
+            <div class="separador_espacio" aria-hidden="true"></div>
+
+            <div class="html-viewer">
+            <div class="viewer-toolbar">
+                <span>Ejemplo</span>
+                <button class="copy-btn" onclick="copyHTML(this)">📋 Copiar</button>
+            </div>
+            <pre><code id="php-intro-code" class="language-php">
+<span class="token comment">&lt;!DOCTYPE html&gt;</span>
+<span class="token tag">&lt;html</span> <span class="token variables">lang=</span><span class="token string">"es"</span><span class="token tag">&gt;</span>
+<span class="token tag">&lt;head&gt;</span>
+    <span class="token tag">&lt;title&gt;</span>Ejemplo PHP<span class="token tag">&lt;/title&gt;</span>
+<span class="token tag">&lt;/head&gt;</span>
+<span class="token tag">&lt;body&gt;</span>
+    <span class="token tag">&lt;h1&gt;</span>Bienvenido a mi sitio web<span class="token tag">&lt;/h1&gt;</span>
+    
+    <span class="token tag">&lt;?php</span>
+        <span class="token comment">// Código PHP ejecutado en el servidor.</span>
+        <span class="token variables">$usuario</span> = <span class="token string">"Visitante Estelar"</span>;
+        <span class="token function">echo</span> <span class="token string">"&lt;h2&gt;Hola, "</span> . <span class="token variables">$usuario</span> . <span class="token string">"!&lt;/h2&gt;"</span>;
+    <span class="token tag">?&gt;</span>
+    
+    <span class="token tag">&lt;p&gt;</span>Este es contenido HTML normal.<span class="token tag">&lt;/p&gt;</span>
+<span class="token tag">&lt;/body&gt;</span>
+<span class="token tag">&lt;/html&gt;</span>
+            </code></pre>
+            </div>
+        </section>
+
+        <div class="separador"></div>
+
+        <section>
+            <h2>2. Sintaxis Básica y Etiquetas PHP</h2>
+            <p>
+                El intérprete de PHP reconoce bloques de código dentro de <code>&lt;?php ... ?&gt;</code>.
+                Cada instrucción termina con punto y coma (<code>;</code>). La función más usada para
+                mostrar texto es <code>echo</code>.
+            </p>
+
+            <div class="code-block">
+            <div class="code-toolbar">
+                <span>PHP</span>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+            </div>
+            <pre><code class="language-php">
+<span class="token tag">&lt;?php</span>
+<span class="token comment">// Imprimir texto simple</span>
+<span class="token function">echo</span> <span class="token string">"Hola Mundo"</span>;
+  
+<span class="token comment">// Variables y concatenación</span>
+<span class="token variables">$nombre</span> = <span class="token string">"Carlos"</span>;
+<span class="token function">echo</span> <span class="token string">"El usuario: "</span> . <span class="token variables">$nombre</span> . <span class="token string">" tiene puntos."</span>;
+<span class="token tag">?&gt;</span>
+            </code></pre>
+            </div>
+        </section>
+
+        <div class="separador"></div>
+
+        <section>
+            <h2>3. Variables en PHP</h2>
+            <h3>3.1 Declaración de Variables</h3>
+            <p>
+                En PHP las variables comienzan con <code>$</code>. PHP es de tipado dinámico: el tipo
+                se infiere del valor asignado. Ten en cuenta que PHP distingue entre mayúsculas y minúsculas
+                en nombres de variables.
+            </p>
+
+            <div class="code-block">
+            <div class="code-toolbar">
+                <span>PHP</span>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+            </div>
+            <pre><code class="language-php">
+<span class="token tag">&lt;?php</span>
+<span class="token variables">$nombre</span> = <span class="token string">"Carlos"</span>;
+<span class="token variables">$puntuacion</span> = <span class="token number">95</span>;
+<span class="token variables">$esta_conectado</span> = <span class="token keyword">true</span>;
+
+<span class="token comment">// Concatenación con punto</span>
+<span class="token variables">$saludo</span> = <span class="token string">"El usuario: "</span> . <span class="token variables">$nombre</span> . <span class="token string">" tiene "</span> . <span class="token variables">$puntuacion</span> . <span class="token string">" puntos."</span>;
+<span class="token function">echo</span> <span class="token string">"&lt;h1&gt;"</span> . <span class="token variables">$saludo</span> . <span class="token string">"&lt;/h1&gt;"</span>;
+<span class="token tag">?&gt;</span>
+            </code></pre>
+            </div>
+        </section>
+
+        <div class="separador"></div>
+
+        <section>
+            <h2>4. Tipos de Datos</h2>
+            <p>
+                PHP maneja varios tipos comunes: <code>string</code>, <code>int</code>, <code>float</code>,
+                <code>bool</code>, <code>array</code> y <code>null</code>. También existen arrays asociativos.
+            </p>
+
+            <div class="code-block">
+            <div class="code-toolbar">
+                <span>PHP</span>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+            </div>
+            <pre><code class="language-php">
+<span class="token tag">&lt;?php</span>
+<span class="token comment">// Strings</span>
+<span class="token variables">$producto</span> = <span class="token string">"Teclado Mecánico"</span>;
+
+<span class="token comment">// Integer</span>
+<span class="token variables">$edad</span> = <span class="token number">35</span>;
+
+<span class="token comment">// Float</span>
+<span class="token variables">$precio</span> = <span class="token number">49.99</span>;
+
+<span class="token comment">// Boolean</span>
+<span class="token variables">$es_admin</span> = <span class="token keyword">false</span>;
+
+<span class="token comment">// Array</span>
+<span class="token variables">$colores</span> = [<span class="token string">"Rojo"</span>, <span class="token string">"Verde"</span>, <span class="token string">"Azul"</span>];
+
+<span class="token comment">// Null</span>
+<span class="token variables">$fecha_de_baja</span> = <span class="token keyword">null</span>;
+
+<span class="token comment">// Array asociativo</span>
+<span class="token variables">$usuario</span> = [
+    <span class="token string">"nombre"</span> =&gt; <span class="token string">"Elena"</span>,
+    <span class="token string">"email"</span> =&gt; <span class="token string">"elena@web.com"</span>,
+    <span class="token string">"activo"</span> =&gt; <span class="token keyword">true</span>
+];
+
+<span class="token function">echo</span> <span class="token string">"&lt;h3&gt;Email: "</span> . <span class="token variables">$usuario</span>[<span class="token string">'email'</span>] . <span class="token string">"&lt;/h3&gt;"</span>;
+<span class="token tag">?&gt;</span>
+            </code></pre>
+            </div>
+        </section>
+
+        <div class="separador"></div>
+
+        <section>
+            <h2>5. Operadores</h2>
+            <h3>5.1 Operadores Aritméticos</h3>
+            <p>
+                Incluyen <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code> y <code>%</code>.
+            </p>
+
+            <div class="operator-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Símbolo</th>
+                            <th>Operación</th>
+                            <th>Ejemplo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>+</td><td>Suma</td><td>$a + $b</td></tr>
+                        <tr><td>-</td><td>Resta</td><td>$a - $b</td></tr>
+                        <tr><td>*</td><td>Multiplicación</td><td>$a * $b</td></tr>
+                        <tr><td>/</td><td>División</td><td>$a / $b</td></tr>
+                        <tr><td>%</td><td>Módulo</td><td>10 % 3</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="separador_espacio" aria-hidden="true"></div>
+
+            <h3>5.2 Operadores de Comparación</h3>
+            <p>
+                Usa siempre <code>===</code> y <code>!==</code> para evitar conversiones implícitas.
+            </p>
+
+            <div class="code-block">
+            <div class="code-toolbar">
+                <span>PHP</span>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+            </div>
+            <pre><code class="language-php">
+<span class="token tag">&lt;?php</span>
+<span class="token variables">$a</span> = <span class="token number">10</span>;
+<span class="token variables">$b</span> = <span class="token string">"10"</span>;
+
+<span class="token function">var_dump</span>(<span class="token variables">$a</span> === <span class="token variables">$b</span>); <span class="token comment">// bool(false)</span>
+<span class="token function">var_dump</span>(<span class="token variables">$a</span> == <span class="token variables">$b</span>);  <span class="token comment">// bool(true)  (evitar)</span>
+<span class="token tag">?&gt;</span>
+            </code></pre>
+            </div>
+        </section>
+
+        <div class="separador"></div>
+
+        <section>
+            <h2>6. Control de Flujo</h2>
+            <h3>6.1 if / else / elseif</h3>
+            <p>
+                Permiten ejecutar bloques condicionalmente.
+            </p>
+
+            <div class="code-block">
+            <div class="code-toolbar">
+                <span>PHP</span>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+            </div>
+            <pre><code class="language-php">
+<span class="token tag">&lt;?php</span>
+<span class="token variables">$edad_usuario</span> = <span class="token number">17</span>;
+
+<span class="token keyword">if</span> (<span class="token variables">$edad_usuario</span> &gt;= <span class="token number">18</span>) {
+    <span class="token function">echo</span> <span class="token string">"&lt;p&gt;Acceso Concedido.&lt;/p&gt;"</span>;
+} <span class="token keyword">else</span> {
+    <span class="token function">echo</span> <span class="token string">"&lt;p&gt;Acceso Denegado: Eres menor de edad.&lt;/p&gt;"</span>;
+}
+<span class="token tag">?&gt;</span>
+            </code></pre>
+            </div>
+
+            <div class="separador_espacio" aria-hidden="true"></div>
+
+            <h3>6.2 Ejemplo con elseif</h3>
+            <div class="code-block">
+            <div class="code-toolbar">
+                <span>PHP</span>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+            </div>
+            <pre><code class="language-php">
+<span class="token tag">&lt;?php</span>
+<span class="token variables">$hora</span> = <span class="token function">date</span>(<span class="token string">"H"</span>);
+
+<span class="token keyword">if</span> (<span class="token variables">$hora</span> &lt; <span class="token number">12</span>) {
+    <span class="token function">echo</span> <span class="token string">"&lt;h2&gt;Buenos días.&lt;/h2&gt;"</span>;
+} <span class="token keyword">elseif</span> (<span class="token variables">$hora</span> &lt; <span class="token number">19</span>) {
+    <span class="token function">echo</span> <span class="token string">"&lt;h2&gt;Buenas tardes.&lt;/h2&gt;"</span>;
+} <span class="token keyword">else</span> {
+    <span class="token function">echo</span> <span class="token string">"&lt;h2&gt;Buenas noches.&lt;/h2&gt;"</span>;
+}
+<span class="token tag">?&gt;</span>
+            </code></pre>
+            </div>
+        </section>
+
+        <div class="separador"></div>
+
+        <section>
+            <h2>7. Bucles</h2>
+            <h3>7.1 for</h3>
+            <div class="code-block">
+            <div class="code-toolbar">
+                <span>PHP</span>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+            </div>
+            <pre><code class="language-php">
+<span class="token tag">&lt;?php</span>
+<span class="token keyword">for</span> (<span class="token variables">$i</span> = <span class="token number">1</span>; <span class="token variables">$i</span> &lt;= <span class="token number">5</span>; <span class="token variables">$i</span>++) {
+    <span class="token function">echo</span> <span class="token string">"&lt;p&gt;Contador: "</span> . <span class="token variables">$i</span> . <span class="token string">"&lt;/p&gt;"</span>;
+}
+<span class="token tag">?&gt;</span>
+            </code></pre>
+            </div>
+
+            <div class="separador_espacio" aria-hidden="true"></div>
+
+            <h3>7.2 foreach</h3>
+            <div class="code-block">
+            <div class="code-toolbar">
+                <span>PHP</span>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+            </div>
+            <pre><code class="language-php">
+<span class="token tag">&lt;?php</span>
+<span class="token variables">$productos</span> = [<span class="token string">"Taza"</span>, <span class="token string">"Gorra"</span>, <span class="token string">"Camiseta"</span>];
+
+<span class="token function">echo</span> <span class="token string">"&lt;h3&gt;Lista de Productos Disponibles:&lt;/h3&gt;"</span>;
+<span class="token keyword">foreach</span> (<span class="token variables">$productos</span> as <span class="token variables">$producto</span>) {
+    <span class="token function">echo</span> <span class="token string">"&lt;li&gt;"</span> . <span class="token variables">$producto</span> . <span class="token string">"&lt;/li&gt;"</span>;
+}
+
+<span class="token comment">// Arrays asociativos</span>
+<span class="token variables">$usuario</span> = [<span class="token string">"nombre"</span> =&gt; <span class="token string">"Ana"</span>, <span class="token string">"rol"</span> =&gt; <span class="token string">"editor"</span>];
+<span class="token keyword">foreach</span> (<span class="token variables">$usuario</span> as <span class="token variables">$clave</span> =&gt; <span class="token variables">$valor</span>) {
+    <span class="token function">echo</span> <span class="token string">"&lt;p&gt;Propiedad "</span> . <span class="token variables">$clave</span> . <span class="token string">" tiene el valor: "</span> . <span class="token variables">$valor</span> . <span class="token string">"&lt;/p&gt;"</span>;
+}
+<span class="token tag">?&gt;</span>
+            </code></pre>
+            </div>
+        </section>
+
+        <div class="separador"></div>
+
+        <section>
+            <h2>8. Funciones</h2>
+            <h3>8.1 Declaración y uso</h3>
+            <p>
+                Las funciones encapsulan lógica reutilizable. Se definen con <code>function</code> y
+                pueden devolver valores con <code>return</code>.
+            </p>
+
+            <div class="code-block">
+            <div class="code-toolbar">
+                <span>PHP</span>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+            </div>
+            <pre><code class="language-php">
+<span class="token tag">&lt;?php</span>
+<span class="token keyword">function</span> <span class="token function">calcularAreaRectangulo</span>(<span class="token variables">$ancho</span>, <span class="token variables">$alto</span>) {
+    <span class="token variables">$area</span> = <span class="token variables">$ancho</span> * <span class="token variables">$alto</span>;
+    <span class="token keyword">return</span> <span class="token variables">$area</span>;
+}
+
+<span class="token variables">$area1</span> = <span class="token function">calcularAreaRectangulo</span>(<span class="token number">10</span>, <span class="token number">5</span>);
+<span class="token function">echo</span> <span class="token string">"&lt;p&gt;El área del primer rectángulo es: "</span> . <span class="token variables">$area1</span> . <span class="token string">"&lt;/p&gt;"</span>;
+<span class="token tag">?&gt;</span>
+            </code></pre>
+            </div>
+
+            <div class="separador_espacio" aria-hidden="true"></div>
+
+            <h3>8.2 Funciones built-in útiles</h3>
+            <p>
+                PHP incluye muchas funciones: <code>strlen()</code>, <code>str_replace()</code>,
+                <code>rand()</code>, <code>count()</code>, entre otras.
+            </p>
+
+            <div class="code-block">
+            <div class="code-toolbar">
+                <span>PHP</span>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+            </div>
+            <pre><code class="language-php">
+<span class="token tag">&lt;?php</span>
+<span class="token comment">// Ejemplos</span>
+<span class="token function">echo</span> <span class="token function">strlen</span>(<span class="token string">"Hola"</span>); <span class="token comment">// 4</span>
+<span class="token function">echo</span> <span class="token function">str_replace</span>(<span class="token string">"mal"</span>, <span class="token string">"bien"</span>, <span class="token string">"Esto está mal"</span>);
+<span class="token function">echo</span> <span class="token function">rand</span>(<span class="token number">1</span>, <span class="token number">100</span>);
+<span class="token variables">$productos</span> = [<span class="token string">"A"</span>,<span class="token string">"B"</span>,<span class="token string">"C"</span>];
+<span class="token function">echo</span> <span class="token function">count</span>(<span class="token variables">$productos</span>); <span class="token comment">// 3</span>
+<span class="token tag">?&gt;</span>
+            </code></pre>
+            </div>
+        </section>
+
+        <div class="separador"></div>
+
+        <section>
+            <h2>9. Programación Orientada a Objetos (POO)</h2>
+            <h3>9.1 Clases y Objetos</h3>
+            <p>
+                La POO organiza el código en clases (plantillas) y objetos (instancias). Las clases contienen
+                propiedades y métodos; el constructor inicializa instancias.
+            </p>
+
+            <div class="code-block">
+            <div class="code-toolbar">
+                <span>PHP</span>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+            </div>
+            <pre><code class="language-php">
+<span class="token tag">&lt;?php</span>
+<span class="token keyword">class</span> <span class="token func-name">Usuario</span> {
+    <span class="token keyword">public</span> <span class="token variables">$nombre</span>;
+    
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">__construct</span>(<span class="token variables">$nombre_inicial</span>) {
+        <span class="token variables">$this</span>-><span class="token variables">nombre</span> = <span class="token variables">$nombre_inicial</span>;
+    }
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">saludar</span>() {
+        <span class="token keyword">return</span> <span class="token string">"Hola, soy "</span> . <span class="token variables">$this</span>-><span class="token variables">nombre</span>;
+    }
+}
+
+<span class="token variables">$usuario1</span> = <span class="token keyword">new</span> <span class="token func-name">Usuario</span>(<span class="token string">"Marta"</span>);
+<span class="token function">echo</span> <span class="token string">"&lt;p&gt;"</span> . <span class="token variables">$usuario1</span>-><span class="token function">saludar</span>() . <span class="token string">"&lt;/p&gt;"</span>;
+<span class="token tag">?&gt;</span>
+            </code></pre>
+            </div>
+        </section>
+
+        <div class="separador"></div>
+
+        <section>
+            <h2>10. Conexión a MySQL</h2>
+            <p>
+                Para conectar con MySQL se usan extensiones como MySQLi o PDO. A continuación un ejemplo
+                básico de conexión, consulta y cierre usando MySQLi.
+            </p>
+
+            <div class="code-block">
+            <div class="code-toolbar">
+                <span>PHP</span>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+            </div>
+            <pre><code class="language-php">
+<span class="token tag">&lt;?php</span>
+<span class="token variables">$servidor</span> = <span class="token string">"localhost"</span>;
+<span class="token variables">$usuario</span> = <span class="token string">"root"</span>;
+<span class="token variables">$password</span> = <span class="token string">""</span>;
+<span class="token variables">$bd</span> = <span class="token string">"mi_enciclopedia_web"</span>;
+
+<span class="token variables">$conexion</span> = <span class="token keyword">new</span> <span class="token func-name">mysqli</span>(<span class="token variables">$servidor</span>, <span class="token variables">$usuario</span>, <span class="token variables">$password</span>, <span class="token variables">$bd</span>);
+
+<span class="token keyword">if</span> (<span class="token variables">$conexion</span>-><span class="token variables">connect_error</span>) {
+    <span class="token function">die</span>(<span class="token string">"Error al conectar con la base de datos: "</span> . <span class="token variables">$conexion</span>-><span class="token variables">connect_error</span>);
+}
+<span class="token function">echo</span> <span class="token string">"Conexión exitosa a la base de datos.&lt;br&gt;"</span>;
+
+<span class="token variables">$sql</span> = <span class="token string">"SELECT titulo FROM articulos LIMIT 3"</span>;
+<span class="token variables">$resultado</span> = <span class="token variables">$conexion</span>-><span class="token function">query</span>(<span class="token variables">$sql</span>);
+
+<span class="token keyword">if</span> (<span class="token variables">$resultado</span>-><span class="token variables">num_rows</span> > <span class="token number">0</span>) {
+    <span class="token keyword">while</span>(<span class="token variables">$fila</span> = <span class="token variables">$resultado</span>-><span class="token function">fetch_assoc</span>()) {
+        <span class="token function">echo</span> <span class="token string">"&lt;li&gt;"</span> . <span class="token variables">$fila</span>[<span class="token string">"titulo"</span>] . <span class="token string">"&lt;/li&gt;"</span>;
+    }
+} <span class="token keyword">else</span> {
+    <span class="token function">echo</span> <span class="token string">"&lt;p&gt;No se encontraron artículos.&lt;/p&gt;"</span>;
+}
+
+<span class="token variables">$conexion</span>-><span class="token function">close</span>();
+<span class="token tag">?&gt;</span>
+            </code></pre>
+            </div>
+        </section>
+
+        <div class="separador"></div>
+
+        <section>
+            <h2>11. Validación y Limpieza de Datos</h2>
+            <h3>11.1 Limpieza (Sanitización)</h3>
+            <p>
+                Nunca confíes en los datos del cliente. Usa <code>htmlspecialchars()</code> y otras
+                funciones para neutralizar entradas peligrosas.
+            </p>
+
+            <div class="code-block">
+            <div class="code-toolbar">
+                <span>PHP</span>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+            </div>
+            <pre><code class="language-php">
+<span class="token tag">&lt;?php</span>
+<span class="token comment">// Limpieza de entrada</span>
+<span class="token variables">$nombre_recibido</span> = <span class="token string">"&lt;script&gt;alert(1)&lt;/script&gt;"</span>;
+<span class="token variables">$nombre_limpio</span> = <span class="token function">htmlspecialchars</span>(<span class="token variables">$nombre_recibido</span>);
+<span class="token function">echo</span> <span class="token variables">$nombre_limpio</span>; <span class="token comment">// &amp;lt;script&amp;gt;alert(1)&amp;lt;/script&amp;gt;</span>
+<span class="token tag">?&gt;</span>
+            </code></pre>
+            </div>
+
+            <div class="separador_espacio" aria-hidden="true"></div>
+
+            <h3>11.2 Funciones de Validación Útiles</h3>
+            <p>
+                Entre las funciones útiles están:
+                <ul>
+                    <li><code>isset()</code> — comprueba si una variable existe.</li>
+                    <li><code>empty()</code> — comprueba si una variable está vacía.</li>
+                    <li><code>filter_var()</code> — valida formatos (emails, URLs).</li>
+                </ul>
+            </p>
+
+            <div class="code-block">
+            <div class="code-toolbar">
+                <span>PHP</span>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+            </div>
+            <pre><code class="language-php">
+<span class="token tag">&lt;?php</span>
+<span class="token variables">$email_recibido =</span> "ejemplo_invalido.com";
+<span class="token variables">$nombre_recibido =</span> "Usuario con guion";
+
+<span class="token comment">// 1. Sanitizar</span>
+<span class="token variables">$nombre_limpio =</span> <span class="token function">htmlspecialchars</span>(<span class="token variables">$nombre_recibido</span>);
+
+<span class="token comment">// 2. Validar email</span>
+<span class="token keyword">if</span> (<span class="token function">filter_var</span>(<span class="token variables">$email_recibido</span>, <span class="token keyword">FILTER_VALIDATE_EMAIL</span>)) {
+    <span class="token function">echo</span> <span class="token string">"&lt;p&gt;El email es válido.&lt;/p&gt;"</span>;
+} <span class="token keyword">else</span> {
+    <span class="token function">echo</span> <span class="token string">"&lt;p&gt;El email "</span> . <span class="token function">htmlspecialchars</span>(<span class="token variables">$email_recibido</span>) . <span class="token string">" NO tiene un formato válido.&lt;/p&gt;"</span>;
+}
+<span class="token tag">?&gt;</span>
+            </code></pre>
+            </div>
+        </section>
+
+    </main>
+
+   <!-- Pelota flotante -->
+    <div class="float-btn" id="floatBtn">☰</div>
+
+    <!-- Menú flotante -->
+    <nav class="float-menu" id="floatMenu"></nav>
+    <script src="../script/script.js"></script>
+</body>
+</html>

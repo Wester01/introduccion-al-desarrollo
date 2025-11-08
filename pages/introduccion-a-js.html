@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repaso de JavaScript - Básicos</title>
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+<body>
+    <header>
+        <div class="title-container">
+            <h1>
+                Básicos de JavaScript
+            </h1>
+            <h2>
+                Nociones básicas del lenguaje
+            </h2>
+        </div>
+        
+        <div class="home_container">
+            <div class="home-btn">
+                <a href="../index.html"><img src="../img/home2.png" alt="Home Img"></a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section id="top">
+            <h2>1. Introducción a JavaScript</h2>
+            <h3>1.1 Qué es?</h3>
+            <p>
+                Imagina que una página web es como un coche: <br><br>
+
+                    HTML es la carrocería y la estructura (el esqueleto del coche). <br>
+
+                    CSS es la pintura y los adornos (cómo se ve el coche). <br>
+
+                    JavaScript es el motor y el cerebro (hace que el coche se mueva, se enciendan las luces, se abra la puerta al pulsar un botón). <br>
+
+                    En resumen, JS es el lenguaje que añade interactividad y comportamiento dinámico a las páginas web
+            </p>
+            <h3>1.2 Dónde se Ejecuta JS?</h3>
+            <p>
+                JS se ejecuta principalmente en dos lugares: <br><br> 
+
+                En tu navegador web (Chrome, Firefox, Edge, etc.): Esto permite que los botones reaccionen, que los menús se desplieguen o que se carguen nuevos datos sin recargar la página. <br>
+
+                En el servidor (con Node.js): Permite construir aplicaciones completas fuera del navegador.
+            </p>
+            <h3>1.3 Cómo Incluir Nuestro Script en una Web (El Setup)</h3>
+            <p>
+                Para que el navegador sepa que debe ejecutar nuestro código, lo "conectamos" a nuestro archivo HTML. La forma más común y recomendada es crear un archivo .js separado (por ejemplo, script.js) y enlazarlo usando la etiqueta script al final del body del documento html.
+            </p>
+            <div class="html-viewer">
+            <div class="viewer-toolbar">
+                <span>HTML Viewer</span>
+                <button class="copy-btn" onclick="copyHTML(this)">📋 Copiar</button>
+            </div>
+            <pre><code id="html-code">
+                <span class="token comment">&lt;!-- Ejemplo de estructura HTML --&gt;</span>
+                <span class="token tag">&lt;html</span> <span class="token attr-name">lang</span>=<span class="token attr-value">"es"</span><span class="token.tag">&gt;</span>
+                    <span class="token tag">&lt;head&gt;</span>
+                        <span class="token tag">&lt;meta</span> <span class="token attr-name">charset</span>=<span class="token attr-value">"UTF-8"</span><span class="token tag">&gt;</span>
+                        <span class="token tag">&lt;title&gt;</span>Ensayo de JavaScript<span class="token tag">&lt;title&gt;</span>
+                    <span class="token tag">&lt;/head&gt;</span>
+                    <span class="token tag">&lt;body&gt;</span>
+                        
+                        <span class="token tag">&lt;h1&gt;</span>Hola! Soy un titulazo<span class="token tag">&lt;h1&gt;</span>
+                        <span class="token tag">&lt;button <span class="token htmlAttr">id=</span><span class="token attr-value">"mi_boton"</span>&gt;</span>Mi botón<span class="token tag">&lt;button&gt;</span>
+                        <span class="token tag">&lt;script <span class="token htmlAttr">src=</span></span>"./ruta/script.js"<span class="token tag">&gt;</span><span class="token tag">&lt;script&gt;</span>
+                    <span class="token tag">&lt;/body&gt;</span>
+                
+                <span class="token tag">&lt;/html&gt;</span>
+            </code></pre>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <p>
+                Una vez enlazado, podremos crear nuestro primer script y ejecutarlo:
+            </p>
+            <div class="code-block">
+            <div class="code-toolbar">
+                <span>JavaScript</span>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+            </div>
+            <pre><code>
+            <span class="token comment">// Usamos 'console.log()' para mostrar mensajes en la 'consola'</span>
+            <span class="token comment">// del navegador, una herramienta esencial para los desarrolladores.</span>
+            <span class="token keyword">console</span>.log( <span class="token string"> "¡El motor de JavaScript está encendido!"</span>);
+            
+            <span class="token comment">// Obtenemos el botón del html usando su ID</span>
+            <span class="token keyword">const</span> boton = <span class="token keyword">document</span>.getElementById('<span class="token string">mi_boton</span>');
+
+            <span class="token comment">// Asignamos una acción: cuando se haga clic en el botón...</span>
+            <span class="token function">boton.addEventListener( <span class="token string">'click'</span>, () => {
+                <span class="token comment">// se mostrará una alerta...</span>
+                <span class="token keyword">alert</span>(<span class="token string">'Hiciste click! Esta interacción ha sido posible gracias a JS!'</span><span class="token keyword"></span>);
+            });</span>
+
+
+            </code></pre>
+            </div>
+            </div>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>2. Variables y Tipos de Datos: Guardando Información</h2>
+            <p>
+                Una variable es como una caja o un contenedor donde guardamos datos. Le damos un nombre a esa caja para poder usar la información que contiene más tarde. <br><br>
+            </p>
+            <h3>2.1 Declaración de Variables: La Regla de Oro (let y const)</h3>
+            <p>
+                En JavaScript moderno (desde 2015), solo usamos dos palabras clave para crear variables: let y const. <br>
+                <ul>
+                    <li><span class="token keyword">const</span></li>
+                    <ul>
+                        <li>Significado (Constante):  "Caja Inmutable". Su valor NO puede cambiar después de asignado.</li>
+                        <li>Uso: Úsala por defecto siempre que sepas que el valor no necesita cambiar (la mayoría de las veces).</li>
+                        <li>Ejemplo: const velocidadMaxima = 120;</li>
+                    </ul>
+                </ul>
+                <ul>
+                    <li><span class="token keyword">let</span></li>
+                    <ul>
+                        <li>Significado (Variable):  "Caja Mutable". Su valor SÍ puede cambiar.</li>
+                        <li>Uso: Úsala solo cuando necesites actualizar su contenido (ej. contadores, estados de usuario).</li>
+                        <li>Ejemplo: let puntos = 0;</li>
+                    </ul>
+                </ul>
+                <br>
+                Y... ¿por qué no usamos <span class="token keyword">var</span> para declarar las variables? <br>
+                Es una forma obsoleta de declaración, ya no se usa de forma común.
+                <br><br>
+                Ejemplo práctico:
+                <br>
+            </p>
+            <div class="code-block">
+            <div class="code-toolbar">
+                <span>JavaScript</span>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+            </div>
+            <pre><code>
+            <span class="token comment">//Usando CONST: ¡El nombre no puede cambiar!</span>
+            <span class="token keyword">const</span> <span class="token variables">nombreEstudiante</span> = <span class="token string">"Sofia"</span>;
+            <span class="token keyword">console</span>.log(<span class="token variables">nombreEstudiante</span>);
+            
+            
+            <span class="token comment">// nombreEstudiante = "Pedro"; ¡Esto causaría un error!</span>
+
+            <span class="token comment">// Usando let, el valor es actualizable</span>
+            <span class="token keyword">let</span> <span class="token variables">nivelActual</span> = <span class="token number">1</span>;
+            <span class="token keyword">console</span>.log( <span class="token string">"Nivel Actual: "</span>, <span class="token variables">nivelInicial</span>);
+            
+            nivelActual = <span class="token number">2</span>;
+            <span class="token comment">// Muestra el valor actualizado</span>
+            <span class="token keyword">console</span>.log( <span class="token string">"Nivel Actual: "</span>, <span class="token variables">nivelInicial</span>);
+            </code></pre>
+            </div>
+            </div>
+            <div class="separador_espacio"></div>
+            <h3>2.2 Tipos de Datos Primitivos: Las Categorías de Información</h3>
+            <p>
+                Cuando guardamos un dato en una variable, ese dato tiene un tipo. Conocer el tipo es fundamental porque determina qué podemos hacer con él. <br>
+                JavaScript tiene varios tipos primitivos; aquí están los más comunes que debe conocer: <br>
+                <ol>
+                    <li><span class="token keyword">string</span> (Cadenas de Texto)</li>
+                    <ul>
+                        <li>Son cualquier secuencia de caracteres (letras, números, símbolos). Se definen entre comillas (simples ' ', dobles " ") o, la forma moderna y recomendada, backticks **` ``` **.</li>
+                        <ul>
+                            <li>Comillas Invertidas (Template Literals): Nos permiten incluir variables fácilmente dentro del texto.</li>
+                        </ul>
+                    </ul>
+                </ol>
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">const</span> <span class="token variables">nombre</span> = <span class="token string">"Juan"</span>;
+                <span class="token keyword">const</span> <span class="token variables">saludoSimple</span> = <span class="token string">"¡Hola caracola!"</span>;
+                
+                
+                <span class="token comment">// Forma moderna: Template Literals (con backticks ``)</span>
+
+                <span class="token keyword">const</span> <span class="token variables">edad</span> = <span class="token number">30</span>;
+                <span class="token keyword">const</span> <span class="token variables">mensajeCompleto</span> = <span class="token string">`La edad de</span>${<span class="token variables">nombre</span>}  <span class="token string">es: </span>${<span class="token variables">edad</span>}`;
+                <span class="token keyword">console</span>.log(<span class="token variables">mensajeCompleto</span>);
+                </code></pre>
+            </div>
+            </div>
+            <ol start="2">
+                    <li><span class="token keyword">number</span> (Números)</li>
+                    <ul>
+                        <li>Representa tanto números enteros (como 10) como números con decimales (como 3.14). No hay distinción entre ellos.</li>
+                    </ul>
+                </ol>
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">const</span> <span class="token variables">precio</span> = <span class="token number">5</span>;
+                <span class="token keyword">const</span> <span class="token variables">cantidad</span> = <span class="token number">30</span>;
+                <span class="token keyword">const</span> <span class="token variables">total</span> = <span class="token variable">precio</span> * <span class="token variables">cantidad</span>;
+                
+                <span class="token keyword">console</span>.log(<span class="token variables">total</span>);
+                </code></pre>
+            </div>
+            </div>
+            <ol start="3">
+                    <li><span class="token keyword">boolean</span> (Lógicos; true / false)</li>
+                    <ul>
+                        <li>Solo puede tener dos valores: true (verdadero) o false (falso). Se usan para tomar decisiones en el código.</li>
+                    </ul>
+                </ol>
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">const</span> <span class="token variables">usuarioActivo</span> = <span class="token attr-value">true</span>;
+                <span class="token keyword">const</span> <span class="token variables">tienePermiso</span> = <span class="token attr-value">false</span>;
+                </code></pre>
+            </div>
+            </div>
+            <ol start="4">
+                <li><span class="token keyword">undefined y null</span> (Ausencia de valor)</li>
+                <ul>
+                    <li>Aunque parecen similares, son diferentes:</li>
+                    <ul>
+                        <li><span class="token keyword">undefined</span>:</li>
+                        <ul>
+                            <li>Significado: El contenedor existe, pero nunca se le ha puesto nada dentro.</li>
+                            <li>Analogía sencilla: Creaste una caja, pero está vacía porque nadie la llenó.</li>
+                        </ul>
+                        <li> <span class="token keyword">null</span>:</li>
+                        <ul>
+                            <li>Significado: El contenedor existe, e intencionalmente se le asignó el valor de "nada" o "vacío".</li>
+                            <li>Analogía sencilla: Pusiste una etiqueta en la caja que dice: "Aquí no hay nada". Es una ausencia conocida.</li>
+                        </ul>
+                    </ul>
+                </ul>
+            </ol>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token comment">// Variable declarada, pero sin valor asignado -> UNDEFINED</span>
+                <span class="token keyword">let</span> <span class="token variables">nombre</span>;
+                <span class="token keyword">console</span>.log(<span class="token variables">nombre</span>);
+                
+                <span class="token comment">// Asignación intencional de "Nada" -> null</span>
+                <span class="token keyword">const</span> <span class="token variables">configuracion</span> = <span class="token attr-value">null</span>;
+                <span class="token keyword">console</span>.log(<span class="token variables">configuracion</span>);
+                </code></pre>
+            </div>
+            </div>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>3. Operadores: Las Herramientas del Programador</h2>
+            <p>
+                Los operadores se dividen en varias categorías, pero un novato debe dominar las siguientes:
+            </p>
+            <h3>3.1. Operadores Aritméticos (Cálculos)</h3>
+            <div class="operator-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Símbolo</th>
+                            <th>Operación</th>
+                            <th>Ejemplo</th>
+                            <th>Resultado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>+</td>
+                            <td>Suma</td>
+                            <td>1 + 3</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>-</td>
+                            <td>Resta</td>
+                            <td>2 - 3</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>*</td>
+                            <td>Multiplicación</td>
+                            <td>3 * 3</td>
+                            <td>9</td>
+                        </tr>
+                        <tr>
+                            <td>/</td>
+                            <td>División</td>
+                            <td>15 / 3</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>%</td>
+                            <td>Módulo (Resto de la división)</td>
+                            <td>10 % 3</td>
+                            <td>1 (resto de dividir 10 entre 3)</td>
+                        </tr>
+                        <tr>
+                            <td>++</td>
+                            <td>Incremento</td>
+                            <td>let <span class="token variables">i</span> = 0; <span class="token variables">i</span>++</td>
+                            <td><span class="token variables">i</span> ahora es 1, si se coloca ++i, primero se incrementa</td>
+                        </tr>
+                        <tr>
+                            <td>--</td>
+                            <td>Decremento</td>
+                            <td>let <span class="token variables">i</span> = 10; <span class="token variables">i</span>--</td>
+                            <td><span class="token variables">i</span> ahora vale 9, si se coloca <span class="token variables">i</span>-- primero decrementa</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <p>Ejemplo didáctico:</p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">let</span> <span class="token variables">saldo</span> = <span class="token attr-value">100</span>;
+                <span class="token keyword">const</span> <span class="token variables">deposito</span> = <span class="token attr-value">50</span>;
+                <span class="token keyword">const</span> <span class="token variables">retiro</span> = <span class="token attr-value">25</span>;
+                
+                <span class="token comment">// Suma (+= es una abreviatura de: saldo = saldo + deposito)</span>
+                saldo += deposito; <span class="token comment">//saldo ahora es 150</span>
+                <span class="token keyword">console</span>.log(<span class="token string">"Saldo después del depósito:"</span>,  <span class="token variables">saldo</span>);
+
+                <span class="token comment">// Resta (-= es una abreviatura de: saldo = saldo - retiro)</span>
+                saldo -= deposito; <span class="token comment">//saldo ahora es 100</span>
+                <span class="token keyword">console</span>.log(<span class="token string">"Saldo final:"</span>,  <span class="token variables">saldo</span>);
+                </code></pre>
+            </div>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>3.2. Operadores de Comparación (¿Son Iguales?)</h3>
+            <p>
+                Estos operadores siempre devuelven un valor booleano (true o false). Son cruciales para las estructuras de control de flujo (el siguiente tema).
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Símbolo</th>
+                        <th>Nombre</th>
+                        <th>Qué compara?</th>
+                        <th>Recomendación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>===</td>
+                        <td>Igualdad estricta</td>
+                        <td>Compara el <span class="token keyword">valor</span> y el <span class="token keyword">tipo de dato</span></td>
+                        <td>¡Usar siempre este! Evita sorpresas.</td>
+                    </tr>
+                    <tr>
+                        <td>==</td>
+                        <td>Igualdad débil</td>
+                        <td>Compara solo el <span class="token keyword">valor</span>, e intenta convertir los tipos.</td>
+                        <td>¡Evitar! Es confuso y poco seguro.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <p>Ejemplo didáctico:</p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">const</span> <span class="token variables">numero</span> = <span class="token attr-value">10</span>;
+                <span class="token keyword">const</span> <span class="token variables">texto</span> = <span class="token string">"10"</span>;
+                
+                <span class="token comment">// 1. Igualdad Estricta (===):</span>
+                <span class="token keyword">console</span>.log(<span class="token variables">numero</span> === <span class="token variables">texto</span>);<span class="token comment">// // Muestra: false (Son diferentes tipos: number vs string)</span>
+
+                <span class="token comment">// 1. Igualdad Débil (==):</span>
+                <span class="token keyword">console</span>.log(<span class="token variables">numero</span> == <span class="token variables">texto</span>);<span class="token comment">// // Muestra: True (JS convierte "10" a 10 e indica que son iguales)</span>
+                
+                <span class="token comment">// Esto puede llevar a errores, por eso SIEMPRE usamos ===</span>
+                </code></pre>
+            </div>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <p>Otros operadores de comparación</p>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>></td>
+                        <td>Mayor que</td>
+                    </tr>
+                    <tr>
+                        <td><</td>
+                        <td>Menor que</td>
+                    </tr>
+                    <tr>
+                        <td>>=</td>
+                        <td>Mayor o igual</td>
+                    </tr>
+                    <tr>
+                        <td>>=</td>
+                        <td>Menor o igual</td>
+                    </tr>
+                    <tr>
+                        <td>!==</td>
+                        <td>Desigualdad estricta</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>3.3. Operadores Lógicos (Combinando Condiciones)</h3>
+            <p>Nos permiten combinar múltiples condiciones booleanas.</p>
+            <table>
+                <thead>
+                    <th>Símbolo</th>
+                    <th>Nombre</th>
+                    <th>Significado</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&&</td>
+                        <td>AND (Y)</td>
+                        <td>Devuelve true solo si AMBAS condiciones son verdaderas.</td>
+                    </tr>
+                    <tr>
+                        <td>!</td>
+                        <td>NOT (NO)</td>
+                        <td>Invierte el valor: true se vuelve false, y viceversa.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <p>Ejemplo práctico:</p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">const</span> <span class="token variables">tieneCredencial</span> = <span class="token attr-value">true</span>;
+                <span class="token keyword">const</span> <span class="token variables">esMayorDeEdad</span> = <span class="token attr-value">false</span>;
+                
+                <span class="token comment">// Si tiene credencial Y es mayor, puede entrar VIP</span>
+                <span class="token keyword">const</span> accesoVip = <span class="token variables">tieneCredencial</span> && <span class="token variables">esMayorDeEdad</span>;
+                <span class="token keyword">console</span>.log(<span class="token string">"Acceso VIP:"</span>,  <span class="token variables">accesoVip</span>);
+                
+                <span class="token comment">// Si tiene credencial O (al menos) es mayor, puede entrar general</span>
+                <span class="token keyword">const</span> accesoGeneral = <span class="token variables">tieneCredencial</span> || <span class="token variables">esMayorDeEdad</span>;
+                <span class="token keyword">console</span>.log(<span class="token string">"Acceso VIP:"</span>,  <span class="token variables">accesoVip</span>);
+
+                <span class="token comment">// Si tiene credencial Y es mayor, puede entrar VIP</span>
+                <span class="token keyword">const</span> accesoVip = <span class="token variables">tieneCredencial</span> && <span class="token variables">esMayorDeEdad</span>;
+                <span class="token keyword">console</span>.log(<span class="token string">"Acceso General:"</span>,  <span class="token variables">accesoGeneral</span>);
+
+                <span class="token comment">// Navegación</span>
+                <span class="token keyword">console</span>.log(<span class="token string">"Está negado el acceso VIP?"</span>,  !<span class="token variables">accesoVip</span>);
+
+               </code></pre>
+            </div>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>3.4. Operadores Modernos Fundamentales (ES2024)</h3>
+            <p>Estos son esenciales y hacen el código más limpio.</p>
+            <ol>
+                <li>Operador de Coalescencia Nula (??)</li>
+            </ol>
+            <ul>
+                <li><span class="token keyword">Propósito</span>: Sirve para definir un valor por defecto solo si la variable es realmente null o undefined (las ausencias de valor que vimos antes). <br>
+                </li>
+                <li><span class="token keyword">Ejemplo</span>:Queremos usar el nombre del usuario, pero si no está definido, usamos "Invitado".
+                </li>
+            </ul>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">let</span> <span class="token variables">nombreDeUsuario</span> = <span class="token attr-value">null</span>; <span class="token comment">// o podría ser undefined</span>
+                
+                <span class="token comment">// Si nombreUsuario es null o undefined, usa "Invitado"</span>
+                <span class="token keyword">const</span> nombreAMostrar = <span class="token variables">nombreDeUsuario</span> ?? <span class="token string">"Invitado"</span>;
+                <span class="token keyword">console</span>.log(<span class="token variables">nombreAMostrar</span>); <span class="token comment">// Muestra: Invitado</span>
+                
+                nombreDeUsuario = <span class="token string">"Elena"</span>;
+                <span class="token keyword">const</span> <span class="token variables">otroNombre</span> = <span class="token variables">nombreDeUsuario</span> ?? <span class="token string">"Invitado"</span>;
+                <span class="token keyword">console</span>.log(<span class="token variables">otroNombre</span>); <span class="token comment">// Muestra: Elena (ya que tiene un valor, no usa el defecto)</span> 
+               </code></pre>
+            </div>
+            </div>
+            <div class="separador_espacio"></div>
+            <ol start="2">
+                <li>Operador Opcional de Encadenamiento (?.)</li>
+            </ol>
+            <ul>
+                <li><span class="token keyword">Propósito</span>: Una de las mayores causas de errores es intentar acceder a una propiedad de algo que no existe. Este operador lo soluciona. <br>
+                </li>
+                <li><span class="token keyword">Analogía</span>: Es como preguntar: "¿Tiene el objeto una propiedad, y si la tiene, dame su valor, si no, simplemente ignora el error y di undefined?"
+                </li>
+                <li><span class="token keyword">Ejemplo</span>: Intentamos obtener la calle de un usuario, pero el usuario podría no tener una propiedad direccion.
+                </li>
+            </ul>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">const</span> <span class="token variables">usuario</span> = {
+                    <span class="token attr-value">nombre</span>: <span class="token string">"Ana"</span>,
+                    <span class="token comment">// Faltan datos de dirección</span>
+                };
+
+                <span class="token comment">//Forma ANTIGUA (podía fallar con error):</span>
+                <span class="token comment">//const calleAntigua = usuario.direccion.calle; // ¡Error si 'direccion' no existe!</span>
+
+                <span class="token comment">// Forma MODERNA y Segura (?.):</span>
+                <span class="token keyword">const</span> calleModerna = <span class="token variables">usuario</span>.direccion?.calle;
+                <span class="token keyword">console</span>.log(<span class="token variables">calleModerna</span>); <span class="token comment">// Muestra: undefined (No hay error, solo devuelve undefined)</span>
+                </code></pre>
+            </div>
+            </div>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>4. Estructuras de Control de Flujo: Tomando Decisiones y Repitiendo Acciones</h2>
+            <h3>4.1. Condicionales: Tomando Decisiones (if, else, else if)</h3>
+            <p>
+                La estructura <span class="token keyword">if</span> (si) es la forma más básica de tomar una decisión. Le dice al programa: "Si esta condición es verdadera (true), haz esto; si no, ignóralo".
+            </p>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <ol>
+                <li><span class="token keyword">if</span> simple
+                </li>
+            </ol>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">const</span> <span class="token variables">tieneDinero</span> = <span class="token attr-value">true</span>;
+
+                <span class="token comment">// Si la condición es verdadera, se ejecuta el código entre llaves {}</span>
+                <span class="token keyword">if</span> ( <span class="token variables">tieneDinero</span> === <span class="token attr-value">true</span> ){
+                    <span class="token keyword">console</span>.log(<span class="token string">"Puedes comprar el café."</span>);
+                };
+                </code></pre>
+            </div>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <ol start="2">
+                <li><span class="token keyword">if y else</span>
+                </li>
+                <ul>
+                    <li>Agregamos <span class="token keyword">else</span> (si no) para indicar qué hacer si la condición es falsa (false).</li>
+                </ul>
+            </ol>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">const</span> <span class="token variables">edad</span> = <span class="token attr-value">16</span>;
+                <span class="token keyword">const</span> <span class="token variables">edadMinima</span> = <span class="token attr-value">18</span>;
+
+                <span class="token keyword">if</span> ( <span class="token variables">edad</span> >= <span class="token variables">edadMinima</span> ){
+                    <span class="token keyword">console</span>.log(<span class="token string">"Eres mayor de edad. ¡Bienvenido!"</span>);
+                }<span class="token keyword">else</span>{
+                    <span class="token keyword">console</span>.log(<span class="token string">"Aún eres Menor. ¡Adios!"</span>);
+                };
+                </code></pre>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            </div><ol start="3">
+                <li><span class="token keyword">if</span>, <span class="token keyword">else if</span> y <span class="token keyword">else</span>
+                </li>
+                <ul>
+                    <li>Agregamos <span class="token keyword">else</span> (si no) para indicar qué hacer si la condición es falsa (false).</li>
+                </ul>
+            </ol>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">const</span> <span class="token variables">nota</span> = <span class="token attr-value">85</span>;
+
+                <span class="token keyword">if</span> ( <span class="token variables">nota</span> >= <span class="token attr-value">90</span> ){
+                    <span class="token keyword">console</span>.log(<span class="token string">"Obtuviste una A (Excelente)."</span>);
+                }<span class="token keyword">else if </span>( <span class="token variables">nota</span> >= <span class="token attr-value">80</span> )</span>{
+                    <span class="token comment">// Solo se revisa si la primera condición (>= 90) fue falsa.</span>
+                    <span class="token keyword">console</span>.log(<span class="token string">"Obtuviste una B (Notable)."</span>);
+                }<span class="token keyword">else</span>{
+                    <span class="token comment">// Si ninguna de las condiciones anteriores fue verdadera.</span>
+                    <span class="token keyword">console</span>.log(<span class="token string">"Estudia más..."</span>);
+                };
+                </code></pre>
+            </div>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>4.2. El Operador Ternario: La Decisión Rápida</h3>
+            <p>
+                El operador ternario es una forma concisa y moderna de escribir una estructura if/else muy simple en una sola línea. <br><br>
+                Estructura: <span class="token keyword"> condición ? valor_si_true : valor_si_false;</span> <br><br><br>
+                Ejemplo práctico:
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">const</span> <span class="token variables">estaLogueado</span> = <span class="token attr-value">true</span>;
+
+                <span class="token comment">// Versión if else tradicional
+                    /*
+                    let mensaje;
+                    if (estaLogueado) {
+                        mensaje = "Panel de Usuario";
+                    } else {
+                        mensaje = "Iniciar Sesión";
+                    }
+                    */
+
+                    // Versión TERNARIA (más limpia) condición ? true : false</span>
+
+                <span class="token keyword">const</span> <span class="token variables">mensaje</span> = estaLogueado ? <span class="token string">"Panel de Usuario"</span> : <span class="token string">"Iniciar Sesión"</span>;
+
+                <span class="token keyword">console</span>.log(<span class="token variables">mensaje</span>);
+            </code></pre>
+            </div>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>4.3. Bucles (Loops): Repitiendo Tareas</h3>
+            <p>
+                Los bucles nos permiten ejecutar un bloque de código varias veces sin tener que escribirlo repetidamente.
+            </p>
+            <ol>
+                <li>Bucle <span class="token keyword">for</span> (El Bucle Estructurado)
+                </li>
+                <ul>
+                    <li>Se utiliza cuando sabemos exactamente cuántas veces queremos repetir algo.</li>
+                    <li>Estructura: <span class="token keyword">for</span> (<span class="token variables">inicio</span>; <span class="token variables">condición_para_seguir</span>; <span class="token variables">incremento</span>)</li>
+                </ul>
+            </ol>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token comment">// Queremos contar de 0 a 4</span>
+                <span class="token keyword">for</span>( <span class="token keyword">let</span> i = <span class="token attr-value">0</span>; i < <span class="token attr-value">5</span>; i++ ){
+                    <span class="token comment">// 1. let i = 0: Empieza el contador 'i' en cero.</span>
+                    <span class="token comment">// 2. i < 5: Repite mientras 'i' sea menor que 5.</span>
+                    <span class="token comment">// 3. i++: Suma 1 a 'i' en cada repetición.</span>
+
+                    <span class="token keyword">console</span>.log(<span class="token string">"Número de repetición: "</span>, i);
+                };
+                <span class="token comment">// Salida: 0, 1, 2, 3, 4</span>
+            </code></pre>
+            </div>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <ol start="2">
+                <li>Bucle <span class="token keyword">for of</span> (El Bucle Moderno para Colecciones)
+                </li>
+                <ul>
+                    <li>Este bucle es la forma moderna y recomendada para recorrer elementos dentro de listas o colecciones (como los arrays, que veremos después).</li>
+                </ul>
+            </ol>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">const</span> <span class="token variables">colores</span> = [ <span class="token string">"Rojo"</span>, <span class="token string">"Verde"</span>, <span class="token string">"Azul"</span> ];
+                <span class="token comment">// Por cada elemento 'color' DENTRO de la lista 'colores', haz esto:</span>
+
+                <span class="token keyword">for</span>(<span class="token keyword">const</span> color <span class="token keyword">of</span> colores){
+                    
+                   <span class="token keyword">console</span>.log(<span class="token string">`Mi color favorito es: </span> ${color} <span class="token string">`</span>);
+
+                };
+                <span class="token comment">
+                // Salida: 
+                // Mi color favorito es: Rojo
+                // Mi color favorito es: Verde
+                // Mi color favorito es: Azul
+                </span>
+            </code></pre>
+            </div>
+            </div>
+            <div class="separador_especial" aria-hidden="true"></div>
+            <ol start="3">
+                <li>Bucle <span class="token keyword">while</span> (Repetir Mientras se Cumpla)
+                </li>
+                <ul>
+                    <li>Se utiliza cuando no sabemos exactamente cuántas veces se repetirá la acción; solo sabemos la condición para detenerse.</li>
+                </ul>
+            </ol>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">let</span> <span class="token variables">bateria</span> = <span class="token attr-value">10</span>;
+                
+                <span class="token comment">// Mientras la batería sea mayor que 0, sigue ejecutando.</span>
+                <span class="token keyword">while</span>(<span class="token variables">bateria</span> > 0){
+                    
+                    <span class="token keyword">console</span>.log(<span class="token string">`Batería restante: </span> ${color} <span class="token string">%`</span>);
+
+                    <span class="token comment">// Es crucial actualizar la variable para evitar un bucle infinito</span>
+                    bateria--;
+                };
+                <span class="token keyword">console</span>.log(<span class="token string">"Batería Agotada."</span>);
+            </code></pre>
+            </div>
+            </div>
+        </section>
+        <div class="separador" aria-hidden="true"></div>
+        <section>
+            <h2>5. Funciones: Organizando y Reutilizando el Código</h2> 
+            <p>
+                Una función es como una "mini-máquina" a la que le das una tarea y la realiza. <br> El objetivo principal es<span class="token keyword"> empaquetar un conjunto de instrucciones </span>para que puedas llamarlas (ejecutarlas) muchas veces sin tener que reescribirlas.
+            </p>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>5.1. Definición y Llamada</h3>
+            <p>
+                Hay varias formas de definir funciones, pero la forma moderna y la más usada hoy en día es la <span class="token keyword"> Función Flecha </span>(Arrow Function).
+            </p>
+            <ol>
+                <li>Función de Declaración (El Clásico)</li>
+            </ol>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token comment">// Definición: Usamos la palabra 'function'</span>
+                <span class="token keyword">function</span> <span class="token func-name">saludar</span> (nombre){
+                <span class="token comment">// La tarea de la función:</span>
+                <span class="token keyword">return</span> <span class="token string">`Hola,</span> ${nombre} <span class="token string">. Bienvenido/a.`</span>
+                }; 
+                
+                <span class="token comment">// Llamada: Usamos el nombre de la función seguido de paréntesis</span>
+                <span class="token keyword">const</span> saludo1 = saludar(<span class="token string">"Carlos"</span>);
+                <span class="token keyword">console</span>.log(saludo1); <span class="token comment">// Muestra: Hola, Carlos. Bienvenido/a.</span>
+            </code></pre>
+            </div>
+            </div>
+            <ul>
+                <li> <span class="token keyword">nombre</span>: Es un parámetro, la "entrada" que necesita la máquina.
+                </li>
+                <li><span class="token keyword">return</span>: Es la "salida" o el resultado que la máquina devuelve. Si no se usa return, la función devuelve undefined.
+                </li>
+            </ul>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <ol start="2">
+                <li>Funciones Flecha (Arrow Functions): El Estándar Moderno</li>
+                <ul>
+                    <li>Esta es la forma más limpia y compacta. Es la que debemos priorizar.
+                    </li>
+                    <li>Estructura básica: const nombreFuncion = (parametro1, parametro2) => { ...código... }
+                    </li>
+                </ul>
+            </ol>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token comment">// Definición de una función flecha</span>
+                <span class="token keyword">const</span> sumar = (a, b) => {
+                <span class="token keyword">return</span> a + b;
+                }; 
+                
+                <span class="token comment">// Llamada</span>
+                <span class="token keyword">const</span> resultadoSuma = sumar(<span class="token attr-value">5</span>, <span class="token attr-value">10</span>);
+                <span class="token keyword">console</span>.log(resultadoSuma); <span class="token comment">// Muestra: 15</span>
+            </code></pre>
+            </div>
+            </div>
+            <p> 
+                <span class="token keyword">Sintaxis Concisa</span> (para una sola línea): Si la función solo hace una cosa y devuelve un valor inmediatamente, podemos eliminar las llaves {} y la palabra return.
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token comment">// Definición de una función flecha</span>
+                <span class="token keyword">const</span> multiplicar = (a, b) => a * b; 
+                
+                <span class="token keyword">console</span>.log(multiplicar(<span class="token attr-value">5</span>, <span class="token attr-value">4</span>)); <span class="token comment">// Muestra: 20</span>
+            </code></pre>
+            </div>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>5.2. Parámetros por Defecto</h3>
+            <p>
+                Podemos darle un valor a un parámetro en caso de que el usuario no lo envíe al llamar la función. Esto hace que las funciones sean más robustas.
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token comment">// Si no se envía el 'tipo', se usa "Artículo" por defecto</span>
+                <span class="token keyword">const</span> crearTitulo = (texto, tipo = <span class="token string">"Artículo"</span>) =>{
+                    <span class="token keyword">return</span> <span class="token string">`[</span>${tipo}<span class="token string">]:</span>${texto}<span class="token string">`</span>;
+                }; 
+                
+                <span class="token comment">// Llamada con parámetro:</span>
+                <span class="token keyword">console</span>.log(crearTitulo(<span class="token string">"Cómo aprender JS"</span>, <span class="token string">"Tutorial"</span>)); <span class="token comment">// Muestra: [Tutorial]: Cómo aprender JS</span>
+                
+                <span class="token comment">// Llamada sin parámetro (usa el valor por defecto):</span>
+                <span class="token keyword">console</span>.log(crearTitulo(<span class="token string">"Nuevas Características de JS"</span>)); <span class="token comment">// Muestra: [Artículo]: Nuevas Características de JS
+            </code></pre>
+            </div>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>5.3. Rest Parameters (...)</h3>
+            <p>
+                A veces, una función necesita aceptar una cantidad variable de argumentos. El operador Rest (...) toma todos los argumentos restantes y los empaqueta en un único array (lista).
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">const</span> obtenerMaximo = (nombre, ...numeros) =>{
+                    <span class="token comment">// 'numeros' es un array [10, 5, 20, 8]</span>
+                
+                    <span class="token comment">// Math.max encuentra el número más alto en una lista</span>
+                    <span class="token keyword">const</span> maximo = <span class="token keyword">Math</span>.max(...numeros);
+
+                    <span class="token keyword">return</span> <span class="token string">`El número más alto para </span>${nombre}<span class="token string"> es </span>${maximo}<span class="token string">.`</span>;
+                }; 
+                
+                <span class="token comment">//La función recibe "Lista A" como primer argumento,
+                // y 10, 5, 20, 8 como el resto de argumentos (el array 'numeros')
+                    
+                </span>
+                <span class="token keyword">const</span> resultado = obtenerMaximo(<span class="token string">"Lista A"</span>, <span class="token attr-value">10</span>, <span class="token attr-value">4</span>, <span class="token attr-value">8</span>, <span class="token attr-value">9</span> ); 
+                <span class="token keyword">console</span>.log(resultado); <span class="token comment">// Muestra: El número más alto para Lista A es 20.</span>
+            </code></pre>
+            </div>
+            </div>
+        </section>
+        <div class="separador" aria-hidden="true"></div>
+        <section>
+            <h2>6. Arreglos (Arrays): Creando Listas de Datos</h2>       
+            <h3>6.1. Declaración y Acceso</h3>
+            <p>
+                Un array se crea utilizando corchetes [] y separando los elementos con comas
+            </p>
+            <ol>
+                <li>Creación:</li>
+            </ol>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token comment">// Una lista de strings (nombres)</span>
+                <span class="token keyword">const</span> alumnos = [<span class="token string">"Miriam"</span>, <span class="token string">"Jose Luis"</span>, <span class="token string">"Sofía"</span>, <span class="token string">"Antonio"</span>];
+
+                <span class="token comment">// Una lista que mezcla tipos (lo cual es posible, pero no siempre recomendable)</span>
+                <span class="token keyword">const</span> datosMixtos = [<span class="token attr-value">10</span>, <span class="token string">"Conchita"</span>, <span class="token attr-value">true</span>, <span class="token attr-value">null</span> ]; 
+            </code></pre>
+            </div>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <ol start="2">
+                <li>Acceso (Índices)</li>
+            </ol>
+            <p>
+                Cada elemento en un array tiene una posición numérica, llamada índice. <br> Lo crucial es que JavaScript (y la mayoría de lenguajes) empieza a contar desde cero (0).
+            </p>
+            <table>
+                <thead>
+                    <th>Elemento</th>
+                    <th>"Miriam"</th>
+                    <th>"Jose Luis"</th>
+                    <th>"Sofía"</th>
+                    <th>"Antonio"</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Índice</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <p>
+                También podemos saber cuántos elementos tiene una lista usando la propiedad .length:
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">console</span>.log(nombres.length); <span class="token comment">// Muestra: 4 (Hay 4 elementos).</span>
+             </code></pre>
+            </div>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>6.2. Mutación (Agregar y Quitar)</h3>
+            <p> 
+                Aunque declaramos el array con <span class="token keyword">const</span>, podemos modificar su contenido (agregar, quitar o cambiar elementos), lo que no podemos cambiar es el array en sí a que apunte a una lista completamente nueva.
+            </p>
+            <div class="operator-table">
+                <table>
+                    <thead>
+                        <th>Método</th>
+                        <th>Descipción</th>
+                        <th>Ejemplo</th>
+                        <th>Resultado</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="token keyword">.push()</span></td>
+                            <td>Agrega un elemento al final de la lista.</td>
+                            <td>nombres.push("Vanesa")</td>
+                            <td>["Miriam", ..., "Antonio", "Vanesa"]</td>
+                        </tr>
+                        <tr>
+                            <td><span class="token keyword">.pop()</span></td>
+                            <td>Quita el elemento del final de la lista y lo devuelve.</td>
+                            <td>nombres.pop()</td>
+                            <td>Quita "Antonio"</td>
+                        </tr>
+                        <tr>
+                            <td><span class="token keyword">.unshift()</span></td>
+                            <td>Agrega un elemento al principio de la lista.</td>
+                            <td>nombres.unshift("Paco")</td>
+                            <td>["Paco","Miriam", ..., "Antonio"]</td>
+                        </tr>
+                        <tr>
+                            <td><span class="token keyword">.shift()</span></td>
+                            <td>Quita el elemento del principio de la lista y lo devuelve.</td>
+                            <td>nombres.shift()</td>
+                            <td>Quita "Miriam"</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">let</span> heroes = [<span class="token string">"Batman"</span>, <span class="token string">"Superman"</span>];
+                heroes.<span class="token keyword">push</span>(<span class="token string">"Wonder Woman"</span>); <span class="token comment">// Agrega al final</span>
+                <span class="token keyword">console</span>.log(heroes); <span class="token comment">// Muestra: ["Batman", "Superman", "Wonder Woman"]</span>
+                
+                heroes.<span class="token keyword">shift</span>(); <span class="token comment">// Quita el primero</span>
+                <span class="token keyword">console</span>.log(heroes); <span class="token comment">// Muestra: ["Superman", "Wonder Woman"]</span>
+            </code></pre>
+            </div>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>6.3. Métodos Esenciales Modernos (Funciones de Array)</h3>
+            <p>
+                Estos métodos (funciones) nos permiten procesar y manipular listas de manera eficiente y limpia, sin usar bucles for tradicionales.
+            </p>
+            <ol>
+                <li><span class="token keyword">map</span>(): Transformar cada Elemento</li>
+                <ul>
+                    <li><span class="token keyword">Propósito</span>: Crear una nueva lista aplicando una función a cada elemento de la lista original.</li>
+                    <li><span class="token keyword">Analogía</span>: Tienes una lista de precios en Euros y quieres la lista de precios convertidos a Dólares.</li>
+                </ul>
+            </ol>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">const</span> numeros = [<span class="token attr-value">2</span>, <span class="token attr-value">13</span>, <span class="token attr-value">513</span>];
+                <span class="token comment">// Queremos crear una nueva lista donde cada número esté multiplicado por 10.</span>
+                <span class="token keyword">const</span> multiplicados = numeros.<span class="token keyword">map</span>( (num) => {
+                    <span class="token keyword">return</span> num * <span class="token attr-value">10</span>;
+                });
+
+                <span class="token keyword">console</span>.log(multiplicados); <span class="token comment">// Muestra: [20, 130, 5130]</span>
+            </code></pre>
+            </div>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <ol start="2">
+                <li><span class="token keyword">filter</span>(): Seleccionar Elementos</li>
+                <ul>
+                    <li><span class="token keyword">Propósito</span>: Crear una nueva lista que solo contenga los elementos que cumplen una condición específica.</li>
+                    <li><span class="token keyword">Analogía</span>: Tienes una lista de estudiantes y solo quieres los que hayan aprobado (nota > 70).</li>
+                </ul>
+            </ol>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">const</span> puntuaciones = [<span class="token attr-value">85</span>, <span class="token attr-value">60</span>, <span class="token attr-value">98</span>, <span class="token attr-value">58</span>, <span class="token attr-value">75</span>];
+                <span class="token comment">// Solo queremos las puntuaciones que son mayores o iguales a 75</span>
+                <span class="token keyword">const</span> aprobados = puntuaciones.<span class="token keyword">filter</span>( (puntuacion) => {
+                    <span class="token keyword">return</span> puntuacion >= <span class="token attr-value">75</span>;
+                });
+
+                <span class="token keyword">console</span>.log(aprobados); <span class="token comment">// Muestra: [85, 98, 75]</span>
+            </code></pre>
+            </div>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <ol start="3">
+                <li><span class="token keyword">reduce</span>(): Acumular un Valor</li>
+                <ul>
+                    <li><span class="token keyword">Propósito</span>: Recorrer toda la lista para producir un único valor final (suma, promedio, etc.).</li>
+                    <li><span class="token keyword">Analogía</span>: Tienes una lista de precios y quieres obtener el total de la factura.</li>
+                </ul>
+            </ol>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">const</span> precios = [<span class="token attr-value">10</span>, <span class="token attr-value">20</span>, <span class="token attr-value">5</span>, <span class="token attr-value">15</span>];
+                <span class="token comment">// 'acumulador' es el total que se va guardando
+                // 'precioActual' es cada elemento del array</span>
+                <span class="token keyword">const</span> totalFactura = precios.<span class="token keyword">reduce</span>( (acumulador, precioActual) => {
+                    <span class="token keyword">return</span> acumulador + precioActual;
+                }, <span class="token attr-value">0</span>); <span class="token comment">// El 0 es el valor inicial del acumulador</span>
+
+                <span class="token keyword">console</span>.log(totalFactura); <span class="token comment">// Muestra: 50</span>
+            </code></pre>
+            </div>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>6.4. El Operador de Propagación (Spread Operator ...)</h3>
+            <p>
+                Este operador (...) es extremadamente útil y moderno. <br> Se usa para expandir los elementos de un array (o cualquier colección) en un nuevo lugar.
+            </p>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h4>Propósito 1: Copiar y Combinar Arrays</h4>
+            <p>
+                La forma más segura y limpia de combinar dos listas o crear una copia sin afectar la original:
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>JavaScript</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token keyword">const</span> listaA = [<span class="token attr-value">1</span>, <span class="token attr-value">2</span>];
+                <span class="token keyword">const</span> listaB = [<span class="token attr-value">3</span>, <span class="token attr-value">4</span>];
+                
+                <span class="token comment">// Combina ambas listas en una nueva</span>
+                <span class="token keyword">const</span> listaCompleta = [...listaA, ...listaB, <span class="token attr-value">5</span>];
+                <span class="token keyword">console</span>.log(listaCompleta); <span class="token comment">// Muestra: [1, 2, 3, 4, 5]</span>
+            </code></pre>
+            </div>
+            </div>
+        </section>
+        <div class="separador" aria-hidden="true"></div>
+        <section>
+            <h2>7. Objetos: Almacenando Información Estructurada</h2>
+            <p>
+                Si un array es una lista de elementos (ordenados por índice 0, 1, 2...), un objeto es un contenedor que guarda información como pares de "clave: valor" (o "propiedad: valor").
+                <br><br><br>
+                Analogía: Imagina un objeto como el expediente de un estudiante en lugar de una simple lista.
+            </p>
+            <table>
+                <thead>
+                    <th>Array (Lista)</th>
+                    <th>Objeto (Expediente)</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ordenado por posición numérica.</td>
+                        <td>Desordenado por posición.</td>
+                    </tr>
+                    <tr>
+                        <td>Acceso: datos[0]</td>
+                        <td>Acceso: expediente.nombre</td>
+                    </tr>
+                    <tr>
+                        <td>Sólo guarda valores.</td>
+                        <td>Guarda claves (nombres) y sus valores.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="separador_espacio"></div>
+            <h3>7.1. Creación y Acceso</h3>
+            <p>
+                Un objeto se crea utilizando llaves {}.
+            </p>
+            <div class="code-block">
+                    <div class="code-toolbar">
+                        <span>JavaScript</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                    </div>
+                    <pre><code>
+                    <span class="token comment">// Objeto que representa un coche</span>
+                    <span class="token keyword">const</span> coche = {
+                        <span class="token attr-value">modelo</span>: <span class="token string">"Supra MK2"</span>,
+                        <span class="token attr-value">marca</span>: <span class="token string">"Toyota"</span>,
+                        <span class="token attr-value">anio</span>: <span class="token attr-value">1982</span>,
+                        <span class="token attr-value">esLavadora</span>: <span class="token attr-value">false</span>
+                    };
+                    
+                    <span class="token keyword">console</span>.log(coche); 
+                    <span class="token comment">// // Muestra: { marca: 'Toyota', modelo: 'Corolla', anio: 1982, esElectrico: false }</span>
+                    </code></pre>
+            </div>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h4>Acceso a Propiedades</h4>
+            <p>Hay dos formas de obtener el valor de una propiedad:</p>
+            <ol>
+                <li>Notación de Punto (la más común): <span class="token keyword">objeto.clave</span></li>
+                <li>Notación de Corchetes (útil para claves dinámicas): <span class="token keyword">objeto['clave']</span></li>
+            </ol>
+            <div class="code-block">
+                    <div class="code-toolbar">
+                        <span>JavaScript</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                    </div>
+                    <pre><code>
+                    <span class="token comment">// Notación de punto</span>
+                    <span class="token keyword">console</span>.log(coche.marca); <span class="token comment">// Muestra: Toyota</span>
+                    
+                    <span class="token comment">// Notación de Corchetes</span>
+                    <span class="token keyword">console</span>.log(coche[<span class="token string">'anio'</span>]); <span class="token comment">// Muestra: 1982</span>
+                    </code></pre>
+            </div>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h4>Modificar y Agregar Propiedades</h4>
+            <p>Al igual que con los arrays, aunque el objeto se declare con const, podemos cambiar los valores internos.</p>
+            <div class="code-block">
+                    <div class="code-toolbar">
+                        <span>JavaScript</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                    </div>
+                    <pre><code>
+                    <span class="token comment">// Modificar valor existente</span>
+                    coche.anio = <span class="token attr-value">2025</span>; <span class="token comment">// Muestra: Toyota</span>
+                    <span class="token keyword">console</span>.log(coche.anio); <span class="token comment">// Muestra: 2025</span>
+                    
+                    <span class="token comment">// Agregar nuevas Propiedades</span>
+                    auto.color = <span class="token string">"Rosa fucsia"</span>;
+                    <span class="token keyword">console</span>.log(coche.color); <span class="token comment">// Muestra: Rosa fucsia</span>
+                    </code></pre>
+            </div>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>7.2. Desestructuración de Objetos (Destructuring)</h3>
+            <p>
+                Esta es una técnica moderna y muy utilizada que permite extraer propiedades de un objeto y asignarlas directamente a variables con un código más limpio.
+                <br><br><br>
+                Ejemplo sin Desestructuración (Forma Antigua):
+            </p>
+            <div class="code-block">
+                    <div class="code-toolbar">
+                        <span>JavaScript</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                    </div>
+                    <pre><code>
+                    <span class="token keyword">const</span> usuario = {
+                        <span class="token attr-value">id</span>: <span class="token attr-value">1</span>,
+                        <span class="token attr-value">nombre</span>: <span class="token string">"Perico Periquín"</span>,
+                        <span class="token attr-value">rol</span>: <span class="token string">"Administrador"</span>
+                    };
+                    <span class="token comment">
+                    // Necesitas crear una variable para cada propiedad
+                    // const nombreUsuario = usuario.nombre; 
+                    // const rolUsuario = usuario.rol;    
+                    </span>
+                    </code></pre>
+            </div>
+            </div>
+            <div class="separador_espacio"></div>
+            <p>Ejemplo con Desestructuración (Forma Moderna):</p>
+            <div class="code-block">
+                    <div class="code-toolbar">
+                        <span>JavaScript</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                    </div>
+                    <pre><code>
+                    <span class="token keyword">const</span> usuario = {
+                        <span class="token attr-value">id</span>: <span class="token attr-value">1</span>,
+                        <span class="token attr-value">nombre</span>: <span class="token string">"Perico Periquín"</span>,
+                        <span class="token attr-value">rol</span>: <span class="token string">"Administrador"</span>
+                    };
+                    <span class="token comment">// Extraemos 'nombre' y 'rol' directamente en nuevas variables.</span>
+                    <span class="token keyword">const</span> { nombre, rol } = usuario;
+
+                    <span class="token keyword">console</span>.log(nombre);<span class="token comment">// Muestra: Perico Periquín</span>
+                    <span class="token keyword">console</span>.log(rol);<span class="token comment">// Muestra: Administrador</span>
+                    </code></pre>
+            </div>
+            </div>
+            <p>
+                Propiedades por Defecto con Desestructuración: Puedes asignar un valor por defecto si la propiedad no existe en el objeto.
+            </p>
+            <div class="code-block">
+                    <div class="code-toolbar">
+                        <span>JavaScript</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                    </div>
+                    <pre><code>
+                    <span class="token keyword">const</span> { id, estado = <span class="token string">"Activo"</span> } = usuario;
+                    <span class="token keyword">console</span>.log(estado);<span class="token comment">// Muestra: Activo (porque 'estado' no estaba en el objeto 'usuario')</span>
+                    </code></pre>
+            </div>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>7.3. Shorthand Property Names (Nombres Cortos de Propiedad)</h3>
+            <p>
+                Cuando el nombre de la variable que contiene el valor es el mismo que la clave que queremos en el objeto, JavaScript nos permite ser concisos.
+            </p>
+            <div class="code-block">
+                    <div class="code-toolbar">
+                        <span>JavaScript</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                    </div>
+                    <pre><code>
+                    <span class="token keyword">const</span> producto = <span class="token string">"Laptop"</span>;
+                    <span class="token keyword">const</span> precio = <span class="token attr-value">250</span>;
+                    <span class="token keyword">const</span> disponible = <span class="token attr-value">false</span>;
+                    <span class="token comment">// Forma Antigua (repetitiva):
+                    /*
+                    const item = {
+                        producto: producto,
+                        precio: precio,
+                        disponible: disponible
+                    };
+                    */
+                    
+                    //Forma Moderna (Shorthand):</span>
+                    <span class="token keyword">const</span> itemModerno = {
+                        producto, <span class="token commit">// JS entiende producto: producto (clave - valor)</span>
+                        precio, <span class="token commit">// JS entiende precio: precio</span>
+                        disponible
+                    };
+                    <span class="token keyword">console</span>.log(itemModerno);
+                    <span class="token commit">// Muestra: { producto: 'Laptop', precio: 250, disponible: false }</span>
+                    </code></pre>
+            </div>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>7.4. El Spread Operator (...) con Objetos</h3>
+            <p>
+                Al igual que con los arrays, el Spread Operator se usa con objetos para copiar y combinar propiedades de manera inmutable (sin modificar el original).
+            </p>
+            <div class="code-block">
+                    <div class="code-toolbar">
+                        <span>JavaScript</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                    </div>
+                    <pre><code>
+                    <span class="token keyword">const</span> datosBase = {
+                        <span class="token attr-value">nombre</span>: <span class="token string">"Sofía"</span>,
+                        <span class="token attr-value">edad</span>: <span class="token attr-value">28</span>
+                    };
+                    
+                    <span class="token commit">// Crea un nuevo objeto que incluye todas las propiedades de 'datosBase'
+                    // y luego agrega o sobrescribe las nuevas.</span>
+                    <span class="token keyword">const</span> perfilCompleto = {
+                        ...datosBase, <span class="token commit">// Copia nombre: "Sofía" y edad: 28</span>
+                        <span class="token attr-value">ciudad</span>: <span class="token string">"Madrid"</span>, 
+                        <span class="token attr-value">edad</span>: <span class="token attr-value">29</span> <span class="token commit">// Sobreescribe el valor de 'edad'</span>
+                    };
+                    <span class="token keyword">console</span>.log(perfilCompleto);
+                    <span class="token commit">// Muestra: { nombre: 'Sofía', edad: 29, ciudad: 'Madrid' }</span>
+                    </code></pre>
+            </div>
+            </div>
+        </section>
+        <div class="separador" aria-hidden="true"></div>
+        <section>
+            <h2>8. Asincronía: Manejando el Tiempo y la Espera</h2>
+            <p>
+                JavaScript, por naturaleza, es un lenguaje de un solo hilo (single-threaded), lo que significa que solo puede hacer una cosa a la vez. <br>
+                La Asincronía es el mecanismo que le permite iniciar tareas que tardan mucho (como descargar una foto o pedir datos a un servidor) sin bloquear todo el programa.
+                <br><br>
+                Analogía Sencilla: Imagina que estás en una cocina (tu programa).
+            </p>
+            <ul>
+                <li><span class="token keyword">Sincrónico</span>: Pones el agua a hervir. Te quedas parado, mirando la olla, sin hacer absolutamente nada más hasta que hierva. El resto de la cocina está bloqueada.
+                </li>
+                <li><span class="token keyword">Asincrónico</span>: Pones el agua a hervir. Dices: "Cuando hierva, avísame". Mientras esperas, puedes cortar verduras, preparar los platos, o charlar. Cuando el agua avisa (la tarea termina), vuelves a la olla.
+                </li>
+            </ul>
+            <div class="separador_espacio"></div>
+            <h3>8.1. Promises: La Promesa de que Algo Sucederá</h3>
+            <p>
+                Antes de la asincronía moderna, usábamos callbacks, que eran difíciles de manejar. Hoy usamos <span class="token keyword">Promises</span> (Promesas). 
+                <br><br><br>
+                Una Promise es un objeto que representa la terminación o el fracaso de una operación asíncrona. Una Promise puede tener tres estados:
+            </p>
+            <ul>
+                <li><span class="token keyword">Pending</span> (Pendiente): La tarea aún no ha terminado.
+                </li>
+                <li><span class="token keyword">Fulfilled</span> (Cumplida): La tarea terminó con éxito.
+                </li>
+                <li><span class="token keyword">Rejected</span> Rejected (Rechazada): La tarea falló (ej. no había conexión a internet).
+                </li>
+            </ul>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>8.2. El Estándar Moderno: async/await</h3>
+            <p>
+                Esta es la forma más limpia y fácil de trabajar con Promises. <br>
+                Hace que el código asíncrono parezca síncrono (de arriba abajo), lo que facilita su lectura.
+            </p>
+            <ol>
+                <li><span class="token keyword">async</span> (Asíncrono): Se usa antes de la palabra function (o en una función flecha) e indica que esa función devolverá una Promise.
+                </li>
+                <li><span class="token keyword">await</span> (Esperar): Se usa solo dentro de una función async y le dice a JavaScript: "Espera aquí hasta que la Promise se cumpla (o falle), y luego continúa con el resultado."
+                </li>
+            </ol>
+            <p>
+                <br>
+                Ejemplo didáctico: <br><br>
+                Vamos a simular una tarea lenta (como cargar datos de una base de datos) usando setTimeout.
+            </p>
+            <div class="code-block">
+                    <div class="code-toolbar">
+                        <span>JavaScript</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                    </div>
+                    <pre><code>
+                    <span class="token commit">// 1. Definimos una función que simula una tarea LENTA y devuelve una Promise.</span>
+                    <span class="token keyword">const</span> obtenerDatosUsuario = (id) =>  {
+                        <span class="token keyword">return new</span> <span class="token tag">Promise</span>((resolve, rejected) => {
+                            <span class="token tag">setTimeOut</span>(()=>{
+                                <span class="token keyword">if</span>(id === <span class="token attr-value">404</span>){
+                                    <span class="token commit">// Si falla la condición, se rechaza la promesa.</span>
+                                    reject(<span class="token string">"Error: Usuario no encontrado."</span>);
+                                }<span class="token keyword">else</span>{
+                                    <span class="token commit">// Si tiene éxito, se resuelve la promesa con los datos</span>
+                                    resolve({ <span class="token attr-value">id</span>: id,<span class="token attr-value">nombre</span>: <span class="token string">"Elsa"</span>,<span class="token attr-value">puntos</span>: <span class="token attr-value">500</span>});
+                                };
+                            }, <span class="token attr-value">2000</span>);
+                        });
+                    };
+                    <span class="token commit">// 2. Creamos la función ASÍNCRONA que llamará a la tarea lenta.</span>
+                    <span class="token keyword">const</span> iniciarProceso = <span class="token variables">async</span> () => { 
+                        <span class="token keyword">console</span>.log(<span class="token string">"Iniciando la carga de datos... (2 segundos)"</span>);
+                        
+                        <span class="token keyword">try</span>{
+                            <span class="token commit">// La palabra AWAIT detiene momentáneamente esta función
+                            // hasta que obtenerDatosUsuario() se resuelva.</span>
+                            <span class="token keyword">const</span> datos = <span class="token variables">await</span> obtenerDatosUsuario(101);
+                        
+                            <span class="token commit">// Esta línea SOLO se ejecuta DESPUÉS de los 2 segundos</span>
+                            <span class="token keyword">console</span>.log(<span class="token string">"Datos recibidos con éxito:"</span>);
+                            <span class="token keyword">console</span>.log(<span class="token string">`Nombre:</span> ${datos.nombre} <span class="token string">, Puntos:</span> ${datos.puntos} <span class="token string">`</span>);
+                        }<span class="token keyword">catch</span> (error){
+                            <span class="token commit">// Si la Promise fue 'Rejected', el 'catch' atrapa el error</span>
+                            <span class="token keyword">console</span>.log(<span class="token string">"Falló el proceso:"</span>, error);
+                        }
+                            <span class="token keyword">console</span>.log(<span class="token string">"El resto del programa puede seguir ejecutándose."</span>);
+                    };
+
+                    iniciarProceso();
+
+                    <span class="token commit">// OJO: El código fuera de 'iniciarProceso' no se bloquea.
+                    // Se ejecutará inmediatamente después de "Iniciando la carga..."</span>
+                    <span class="token keyword">console</span>.log(<span class="token string">"¡Mientras esperamos, podemos seguir haciendo otras cosas!"</span>);
+                    </code></pre>
+            </div>
+            </div>
+            <h4>Flujo del ejemplo:</h4>
+            <ol>
+                <li>Se llama a <span class="token variables">iniciarProceso()</span>.</li>
+                <li>Se imprime "Iniciando la carga...".</li>
+                <li>Se encuentra <span class="token variables">await obtenerDatosUsuario()</span>. La función iniciarProceso se pausa, pero la aplicación no se bloquea.</li>
+                <li>Mientras está en pausa, se imprime "¡Mientras esperamos...!".</li>
+                <li>Después de 2 segundos, la Promise se resuelve.</li>
+                <li>La función iniciarProceso se reanuda, asigna los datos y los imprime.</li>
+                <li>Se imprime "El resto del programa...".</li>
+            </ol>
+        </section>
+    </main>
+    <!-- Pelota flotante -->
+    <div class="float-btn" id="floatBtn">☰</div>
+
+    <!-- Menú flotante -->
+    <nav class="float-menu" id="floatMenu"></nav>
+    <script src="../script/script.js"></script>
+</body>
+</html>

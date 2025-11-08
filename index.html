@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repaso de JavaScript - Básicos</title>
+    <link rel="stylesheet" href="./style/style-index.css">
+</head>
+<body>
+    <!-- ANIMACIÓN DE INICIO-->
+    <div id="intro-screen" class="intro-active" aria-label="Animación de bienvenida">
+        <div class="intro-content">
+            <h1 class="intro-text">{ Bienvenido }</h1>
+            <button id="skip-intro" aria-label="Saltar animación">Saltar ▷</button>
+        </div>
+    </div>
+ 
+    <header>
+        <div class="contenedor-texto-header">
+           <h1>
+                Dessarrollo De Aplicaciones Web
+            </h1>
+            <h2>
+                Nociones básicas de los lenguajes de programación web
+            </h2> 
+        </div>
+        
+        <div class="video-background">
+            <video autoplay muted loop>
+                <source src="./assets/vid/codigo.mp4" type="video/mp4">
+                Tu navegador no soporta la etiqueta de video.
+                <img src="./img/alt.png" alt="Fondo alternativo">
+            </video>
+        </div>
+    </header>
+    <main>  
+        <div class="contenedor-tarjetas">
+            <article class="tarjeta html">
+                <button class="button-89 posicion-boton" role="button" id="html-button">Empezar</button>
+            </article>
+            <article class="tarjeta css">
+                <button class="button-89 posicion-boton" role="button" id="css-button">Empezar</button>
+            </article>
+            <article class="tarjeta js">
+                <button class="button-89 posicion-boton" role="button" id="js-button">Empezar</button>
+            </article>
+            <article class="tarjeta php">
+                <button class="button-89 posicion-boton" role="button" id="php-button">Empezar</button>
+            </article>
+            <article class="tarjeta xampp">
+               <button class="button-89 posicion-boton" role="button" id="xampp-button">Empezar</button>
+            </article>
+            <article class="tarjeta mysql">
+                <button class="button-89 posicion-boton" role="button" id="mysql-button">Empezar</button>
+            </article>
+        </div>
+    </main>
+    <footer>
+        <figure>
+            <img src="./img/logoDev_compacto.svg" alt="Logo de Wester Dev">
+        </figure>
+    </footer>
+    <script src="./script/script-index.js"></script>
+</body>
+</html>

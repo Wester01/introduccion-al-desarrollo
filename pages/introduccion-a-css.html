@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repaso de JavaScript - Básicos</title>
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+<body>
+    <header>
+        <div class="title-container">
+           <h1>
+                CSS
+            </h1>
+            <h2>
+                El Diseñador de Interiores de la Web
+            </h2> 
+        </div>
+        
+        <div class="home_container">
+            <div class="home-btn">
+                <a href="../index.html"><img src="../img/home2.png" alt="Home Img"></a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section id="top">
+            <h2>1. Introducción a CSS</h2>
+            <h3>1.1 Qué es?</h3>
+            <p>
+                CSS (Cascading Style Sheets - Hojas de Estilo en Cascada) es el lenguaje que describe la presentación de un documento HTML. No ejecuta lógica (eso es PHP y JavaScript), sino que se enfoca en el <em>look and feel</em>. Piensa en CSS como la capa de pintura, decoración y mobiliario que envuelve el esqueleto de HTML. Sin CSS, tu sitio web se vería como un documento de texto plano y aburrido; con CSS, se convierte en un espacio usable y atractivo.
+            </p>
+            <h3>1.2 Propósito: Separación de Responsabilidades</h3>
+            <p>
+                El principal objetivo de CSS es mantener la estructura (HTML) separada de la presentación (CSS). Esto hace que tu código sea:
+                <ul>
+                    <li>Más Rápido: El navegador carga la estructura y luego los estilos, lo que optimiza la visualización.</li>
+                    <li>Más Reutilizable: Puedes cambiar completamente el diseño de 100 páginas editando un solo archivo CSS.</li>
+                </ul>
+            </p>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>2. Sintaxis Básica: La Regla de Estilo (El Dictamen del Diseñador)</h2>
+            <p>
+                Una regla CSS es la instrucción que define el estilo. Cada regla tiene un formato estricto.
+            </p>
+            <h3>2.1 Anatomía de una Regla</h3>
+            <div class="code-block">
+            <div class="code-toolbar">
+                <span>CSS</span>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+            </div>
+            <pre><code>
+                <span class="token comment">/* Esto es un COMENTARIO CSS, no se procesa. Útil para documentar. */</span>
+                <span class="token selector">selector</span> {
+                    <span class="token property">propiedad</span>: <span class="token string">valor</span>; <span class="token comment">/* Declaración 1 */</span>
+                    <span class="token property">propiedad</span>: <span class="token string">valor</span>; <span class="token comment">/* Declaración 2 */</span>
+                }
+            </code></pre>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <p>
+                <ul>
+                    <li>Selector: El "a quién" se aplica el estilo (ej. h1, clase).</li>
+                    <li>Bloque de Declaración: El contenido entre llaves <code>{ }</code>.</li>
+                    <li>Declaración: La instrucción real, un par <strong>propiedad: valor;</strong> seguido obligatoriamente por un punto y coma (el punto final de la instrucción).</li>
+                </ul>
+            </p>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>3. Conexión de CSS con HTML: Tres Maneras de Unir al Equipo</h2>
+            <p>
+                Para que el Diseñador (CSS) sepa qué edificio (HTML) decorar, deben estar conectados.
+            </p>
+            <h3>3.1 Estilos Externos</h3>
+            <p>
+                Es la mejor práctica. El CSS se escribe en un archivo separado (ej. style.css) y se enlaza al documento HTML dentro de la sección <code>&lt;head&gt;</code>.
+            </p>
+            <div class="html-viewer">
+            <div class="viewer-toolbar">
+                <span>HTML Viewer</span>
+                <button class="copy-btn" onclick="copyHTML(this)">📋 Copiar</button>
+            </div>
+            <pre><code id="html-code">
+                <span class="token tag">&lt;head&gt;</span>
+                    <span class="token tag">&lt;link</span> <span class="token attr-name">rel</span>=<span class="token attr-value">"stylesheet"</span> <span class="token attr-name">href</span>=<span class="token attr-value">"styles/style.css"</span><span class="token tag">&gt;</span>
+                <span class="token tag">&lt;/head&gt;</span>
+            </code></pre>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <p>
+                Metáfora: Es tener un manual de diseño global para toda la empresa.
+            </p>
+            <h3>3.2 Estilos Internos</h3>
+            <p>
+                Los estilos se definen directamente en la sección <code>&lt;head&gt;</code> de un documento HTML específico. Útil para estilos que solo aplican a esa página.
+            </p>
+            <h3>3.3 Estilos en Línea (Inline)</h3>
+            <p>
+                Se aplica la regla de estilo directamente como un atributo en la etiqueta HTML (<code>&lt;p style="color: red;"&gt;</code>). Esta es la opción con mayor peso o especificidad, pero debe evitarse porque mezcla estructura y presentación.
+            </p>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>4. Selectores: Apuntando a los Elementos</h2>
+            <h3>4.1 Selectores Principales</h3>
+            <p>
+                Los selectores son tu forma de ser preciso. Son la herramienta que te permite decir: "Solo quiero que este botón específico sea rojo".
+            </p>
+            <div class="operator-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Selector</th>
+                            <th>Sintaxis</th>
+                            <th>¿Cómo funciona?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Elemento</td>
+                            <td><code>p, h2</code></td>
+                            <td>Selecciona todas las instancias de esa etiqueta HTML.</td>
+                        </tr>
+                        <tr>
+                            <td>Clase</td>
+                            <td><code>.btn</code></td>
+                            <td>Selecciona todos los elementos que tengan el atributo <code>class="btn"</code>.</td>
+                        </tr>
+                        <tr>
+                            <td>ID</td>
+                            <td><code>#logo</code></td>
+                            <td>Selecciona el único elemento con <code>id="logo"</code>.</td>
+                        </tr>
+                        <tr>
+                            <td>Descendiente</td>
+                            <td><code>nav a</code></td>
+                            <td>Selecciona todos los elementos <code>&lt;a&gt;</code> que estén dentro de cualquier elemento <code>&lt;nav&gt;</code>.</td>
+                        </tr>
+                        <tr>
+                            <td>Pseudo-Clase</td>
+                            <td><code>:hover, :focus</code></td>
+                            <td>Selecciona un elemento en un estado particular (ej. cuando el ratón está encima o el campo está seleccionado).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>4.2 Ejemplo: El Botón Interactivo</h3>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>CSS</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token comment">/* 1. Selector de Clase: Estilo por defecto del botón */</span>
+                <span class="token selector">.btn-accion</span> {
+                    <span class="token property">background-color</span>: <span class="token value">#007bff</span>;
+                    <span class="token property">color</span>: <span class="token value">white</span>;
+                    <span class="token property">padding</span>: <span class="token value">10px 20px</span>;
+                    <span class="token property">border</span>: <span class="token value">none</span>;
+                    <span class="token property">cursor</span>: <span class="token value">pointer</span>; <span class="token comment">/* Indica que es clickeable */</span>
+                    <span class="token property">transition</span>: <span class="token value">background-color 0.3s ease</span>; <span class="token comment">/* Preparamos la transición */</span>
+                }
+
+                <span class="token comment">/* 2. Selector Pseudo-Clase: El efecto al pasar el ratón */</span>
+                <span class="token comment">/* Cuando el usuario sitúa el cursor sobre el elemento, cambia su estilo. */</span>
+                <span class="token selector">.btn-accion:hover</span> {
+                    <span class="token property">background-color</span>: <span class="token value">#0056b3</span>; <span class="token comment">/* Color más oscuro para el efecto visual */</span>
+                    <span class="token property">transform</span>: <span class="token value">translateY(-2px)</span>; <span class="token comment">/* Pequeño movimiento hacia arriba para simular que se levanta */</span>
+                }
+                </code></pre>
+            </div>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>5. La Cascada, Herencia y Especificidad: Resolviendo Conflictos</h2>
+            <h3>5.1 La Cascada (Orden y Origen)</h3>
+            <p>
+                «Cascada» es el concepto más importante de CSS. Define las reglas de quién gana cuando dos estilos entran en conflicto sobre el mismo elemento. Las reglas que llegan más tarde o que tienen un origen más cercano al elemento anulan a las anteriores.
+                <br>
+                El orden de prioridad es:
+                <ol>
+                    <li>Estilos del navegador.</li>
+                    <li>Estilos Externos/Internos.</li>
+                    <li>Estilos Inline.</li>
+                </ol>
+            </p>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>5.2 Herencia</h3>
+            <p>
+                Algunas propiedades (como <code>color</code> o <code>font-family</code>) se heredan automáticamente del elemento padre a sus hijos. Si defines el color del <code>&lt;body&gt;</code> a rojo, todos los textos dentro serán rojos, a menos que un hijo lo anule.
+            </p>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>5.3 Especificidad (El Peso del Voto)</h3>
+            <p>
+                Si dos selectores aplican al mismo elemento, pero uno está en un archivo CSS anterior y el otro posterior, la Especificidad decide.
+                <ul>
+                    <li>El selector de <strong>ID (#nombre)</strong> tiene el máximo peso.</li>
+                    <li>El selector de <strong>Clase (.nombre)</strong> tiene peso intermedio.</li>
+                    <li>El selector de <strong>Elemento (p)</strong> tiene el menor peso.</li>
+                </ul>
+                <br>
+                Metáfora de Especificidad: Si tienes una regla general para todos los "Párrafos" (Elemento), pero una más específica para los párrafos con la "Clase de Alerta", la regla de la Clase siempre ganará.
+            </p>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>6. El Modelo de Caja (Box Model): Contenedores y Espacios</h2>
+            <h3>6.1 Estructura del Box Model</h3>
+            <p>
+                Cada elemento HTML se renderiza como una caja rectangular. Entender el Modelo de Caja es esencial, ya que el diseño web es, en esencia, organizar estas cajas.
+            </p>
+            <div class="operator-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Componente</th>
+                            <th>¿Qué es?</th>
+                            <th>Analogía Sencilla</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Content</strong></td>
+                            <td>El contenido real (ej. texto, imagen).</td>
+                            <td>El texto del libro.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Padding</strong></td>
+                            <td>Espacio interno entre el contenido y el borde.</td>
+                            <td>El margen blanco del libro.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Border</strong></td>
+                            <td>La línea delgada que rodea el relleno.</td>
+                            <td>La cubierta del libro.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Margin</strong></td>
+                            <td>Espacio externo que separa la caja de otras cajas.</td>
+                            <td>El espacio entre los libros en la estantería.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>6.2 box-sizing: border-box (La Solución al Dolor de Cabeza)</h3>
+            <p>
+                Por defecto, al establecer un <code>width</code> (ancho), el <code>padding</code> y el <code>border</code> se suman al ancho total. Esto es confuso. La propiedad <code>box-sizing: border-box</code> fuerza a que el <code>width</code> y <code>height</code> ya incluyan el <code>padding</code> y el <code>border</code>, simplificando enormemente el layout.
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>CSS</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token comment">/* REGLA GENERAL RECOMENDADA */</span>
+                <span class="token selector">*, *::before, *::after</span> {
+                    <span class="token property">box-sizing</span>: <span class="token string">border-box</span>; <span class="token comment">/* ¡La solución mágica! */</span>
+                }
+                </code></pre>
+            </div>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>7. Unidades de Medida (El Sistema Métrico de CSS)</h2>
+            <p>
+                Las unidades se usan para definir tamaños, espaciados y dimensiones.
+            </p>
+            <h3>7.1 Unidades Absolutas (Fijas)</h3>
+            <p>
+                Tienen un tamaño fijo, independientemente del elemento padre o del tamaño de la pantalla.
+            </p>
+            <ul>
+                <li><strong>px (Píxeles)</strong>: La unidad más común. Un punto de color fijo en la pantalla.</li>
+                <li><strong>pt (Puntos)</strong>: Típico de la impresión. 1pt = 1/72 de pulgada.</li>
+            </ul>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>7.2 Unidades Relativas (Adaptables)</h3>
+            <p>
+                Su tamaño se ajusta en relación a otro valor, lo que es esencial para el Diseño Responsivo.
+            </p>
+            <ul>
+                <li><strong>% (Porcentaje)</strong>: Relativo al tamaño del elemento padre.</li>
+                <li><strong>vw/vh (Viewport Width/Height)</strong>: Relativo al ancho/alto de la ventana del navegador. 1vw es el 1% del ancho del viewport.</li>
+                <li><strong>em</strong>: Relativo al tamaño de fuente del elemento padre.</li>
+                <li><strong>rem</strong>: Relativo al tamaño de fuente del elemento raíz (el <code>&lt;html&gt;</code>). Es el más recomendado para tipografía.</li>
+            </ul>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>8. Propiedades Fundamentales (Texto y Color)</h2>
+            <p>
+                Dominar estas propiedades es clave para cualquier diseño.
+            </p>
+            <h3>8.1 Color</h3>
+            <p>
+                Se usa para el color de texto (<code>color</code>) o el color de fondo (<code>background-color</code>). Hay varios formatos disponibles.
+            </p>
+            <ul>
+                <li><strong>Nombres de Color</strong>: <code>red</code>, <code>blue</code>, <code>black</code>.</li>
+                <li><strong>Hexadecimal (Hex)</strong>: <code>#RRGGBB</code> (ej. <code>#FF0000</code> para rojo). El estándar web.</li>
+                <li><strong>RGB/RGBA</strong>: <code>rgb(red, green, blue)</code> o <code>rgba(red, green, blue, alpha)</code>. Permite añadir <strong>opacidad (alpha)</strong> de 0.0 a 1.0.</li>
+            </ul>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>8.2 Tipografía</h3>
+            <p>
+                Controlar el texto es esencial para la legibilidad y el diseño.
+            </p>
+            <ul>
+                <li><code>font-family</code>: Define la fuente (ej. <code>Arial</code>, <code>sans-serif</code>).</li>
+                <li><code>font-size</code>: Define el tamaño del texto (usar <code>rem</code> o <code>em</code>).</li>
+                <li><code>font-weight</code>: Define el grosor de la fuente (ej. <code>bold</code> o valores numéricos como <code>400</code>, <code>700</code>).</li>
+                <li><code>line-height</code>: Define el espaciado entre líneas de texto.</li>
+                <li><code>text-align</code>: Alineación del texto (ej. <code>left</code>, <code>center</code>, <code>justify</code>).</li>
+            </ul>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>9. Layout: Flexbox (La Distribución Flexible)</h2>
+            <h3>9.1 Uso Principal y Propiedades Clave</h3>
+            <p>
+                Flexbox (Flexible Box Module) es un modelo de diseño unidimensional, lo que significa que organiza los elementos a lo largo de una única línea (eje principal o eje cruzado). Es ideal para alinear, distribuir y organizar ítems en un contenedor. Para usar Flexbox, solo tienes que aplicar <code>display: flex</code> al contenedor padre.
+            </p>
+            <p>
+                Propiedades clave del Contenedor Padre:
+            </p>
+            <div class="operator-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Propiedad</th>
+                            <th>Eje</th>
+                            <th>Propósito</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>justify-content</code></td>
+                            <td>Principal (Horizontal por defecto)</td>
+                            <td>Distribuye y alinea los elementos en el eje principal.</td>
+                        </tr>
+                        <tr>
+                            <td><code>align-items</code></td>
+                            <td>Cruzado (Vertical por defecto)</td>
+                            <td>Distribuye y alinea los elementos en el eje secundario.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>9.2 Ejemplo: El Centrado Perfecto</h3>
+            <p>
+                Antes, centrar un elemento tanto horizontal como verticalmente era un dolor de cabeza. Con Flexbox, es trivial y altamente robusto.
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>CSS</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token comment">/* CSS: Centrado Mágico con Flexbox */</span>
+                <span class="token selector">.contenedor-flex</span> {
+                    <span class="token property">display</span>: <span class="token string">flex</span>; <span class="token comment">/* 1. ¡Activamos Flexbox en el padre! */</span>
+                    <span class="token property">height</span>: <span class="token string">300px</span>; <span class="token comment">/* Damos una altura fija para ver el centrado. */</span>
+                    <span class="token property">background-color</span>: <span class="token string">#f0f8ff</span>;
+                    <span class="token property">border</span>: <span class="token string">3px dashed #007bff</span>; <span class="token comment">/* Borde para visualizar los límites del contenedor. */</span>
+    
+                    <span class="token property">justify-content</span>: <span class="token string">center</span>; <span class="token comment">/* 2. Alinea horizontalmente al centro */</span>
+                    <span class="token property">align-items</span>: <span class="token string">center</span>; <span class="token comment">/* 3. Alinea verticalmente al centro */</span>
+                }
+    
+                <span class="token selector">.centro-perfecto</span> {
+                    <span class="token property">background-color</span>: <span class="token value">#007bff</span>;
+                    <span class="token property">color</span>: <span class="token value">white</span>;
+                    <span class="token property">padding</span>: <span class="token value">20px</span>;
+                    <span class="token property">font-weight</span>: <span class="token value">bold</span>;
+                    <span class="token property">border-radius</span>: <span class="token value">8px</span>;
+                    <span class="token property">box-shadow</span>: <span class="token value">0 4px 6px rgba(0, 0, 0, 0.2)</span>; <span class="token comment">/* Sombra elegante */</span>
+                }
+                </code></pre>
+            </div>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>10. Layout: Grid (La Cuadrícula Maestra)</h2>
+            <h3>10.1 Uso Principal y Propiedades Clave</h3>
+            <p>
+                Grid (CSS Grid Layout) es un sistema de diseño bidimensional. A diferencia de Flexbox (que es para una fila o columna), Grid es para manejar filas Y columnas simultáneamente. Es la herramienta definitiva para el <em>layout</em> general de la página (header, sidebar, main content).
+            </p>
+            <p>
+                Propiedades clave del Contenedor Padre:
+            </p>
+            <ul>
+                <li><code>display: grid</code>: Activa el modo Grid.</li>
+                <li><code>grid-template-columns</code> / <code>grid-template-rows</code>: Define la cantidad, ancho y alto de las columnas y filas.</li>
+                <li><code>grid-gap</code> (o <code>gap</code>): Define el espacio entre las celdas de la cuadrícula.</li>
+                <li><code>grid-template-areas</code>: Permite nombrar secciones del <em>layout</em> para una organización más legible.</li>
+            </ul>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>10.2 Ejemplo: Maquetación de Página (Áreas)</h3>
+            <div class="html-viewer">
+                <div class="viewer-toolbar">
+                    <span>HTML Viewer</span>
+                    <button class="copy-btn" onclick="copyHTML(this)">📋 Copiar</button>
+                </div>
+                <pre><code id="html-code">
+                    <span class="token tag">&lt;div</span> <span class="token attr-name">class</span>=<span class="token attr-value">"contenedor-grid"</span><span class="token tag">&gt;</span>
+                        <span class="token tag">&lt;header</span> <span class="token attr-name">class</span>=<span class="token attr-value">"header"</span><span class="token tag">&gt;</span>Encabezado<span class="token tag">&lt;/header&gt;</span>
+                        <span class="token tag">&lt;nav</span> <span class="token attr-name">class</span>=<span class="token attr-value">"sidebar"</span><span class="token tag">&gt;</span>Menú Lateral<span class="token tag">&lt;/nav&gt;</span>
+                        <span class="token tag">&lt;main</span> <span class="token attr-name">class</span>=<span class="token attr-value">"contenido-principal"</span><span class="token tag">&gt;</span>Contenido Principal<span class="token tag">&lt;/main&gt;</span>
+                        <span class="token tag">&lt;footer</span> <span class="token attr-name">class</span>=<span class="token attr-value">"footer"</span><span class="token tag">&gt;</span>Pie de Página<span class="token tag">&lt;/footer&gt;</span>
+                    <span class="token tag">&lt;/div&gt;</span>
+                </code></pre>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>CSS</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token selector">.contenedor-grid</span> {
+                    <span class="token property">display</span>: <span class="token string">grid</span>;
+                    <span class="token comment">/* 1. Define las áreas de la página (plantilla) */</span>
+                    <span class="token property">grid-template-areas</span>:
+                        <span class="token string">"header header"</span>
+                        <span class="token string">"sidebar main"</span>
+                        <span class="token string">"footer footer"</span>;
+                    <span class="token comment">/* 2. Define las columnas: la sidebar es 100px y el main toma el resto (1fr) */</span>
+                    <span class="token property">grid-template-columns</span>: <span class="token string">100px 1fr</span>;
+                    <span class="token property">gap</span>: <span class="token string">10px</span>; <span class="token comment">/* Espacio entre los elementos */</span>
+                    <span class="token property">height</span>: <span class="token string">500px</span>;
+                    <span class="token property">border</span>: <span class="token string">2px solid #ccc</span>;
+                }
+
+                <span class="token comment">/* 3. Asigna las áreas a los elementos */</span>
+                <span class="token selector">.header</span> { <span class="token property">grid-area</span>: <span class="token value">header</span>; <span class="token property">background-color</span>: <span class="token value">#03A9F4</span>; <span class="token property">color</span>: <span class="token value">white</span>; <span class="token property">padding</span>: <span class="token value">10px</span>; }
+                <span class="token selector">.sidebar</span> { <span class="token property">grid-area</span>: <span class="token value">sidebar</span>; <span class="token property">background-color</span>: <span class="token value">#B3E5FC</span>; <span class="token property">padding</span>: <span class="token value">10px</span>; }
+                <span class="token selector">.contenido-principal</span> { <span class="token property">grid-area</span>: <span class="token value">main</span>; <span class="token property">background-color</span>: <span class="token value">white</span>; <span class="token property">padding</span>: <span class="token value">10px</span>; }
+                <span class="token selector">.footer</span> { <span class="token property">grid-area</span>: <span class="token value">footer</span>; <span class="token property">background-color</span>: <span class="token value">#03A9F4</span>; <span class="token property">color</span>: <span class="token value">white</span>; <span class="token property">padding</span>: <span class="token value">10px</span>; }
+                </code></pre>
+            </div>
+        </section>
+        <div class="separador"></div>
+        <section>
+            <h2>11. Transiciones y Animaciones (Movimiento Web)</h2>
+            <h3>11.1 Transiciones (El Movimiento Simple)</h3>
+            <p>
+                Las Transiciones suavizan el cambio entre dos estados (ej. el estado normal de un botón y su estado <code>:hover</code>). Es la forma más sencilla de añadir movimiento.
+            </p>
+            <ul>
+                <li><code>property</code>: La propiedad CSS que quieres animar (ej. <code>background-color</code>).</li>
+                <li><code>duration</code>: El tiempo que debe durar el movimiento (ej. <code>0.3s</code>).</li>
+                <li><code>timing-function</code>: La curva de velocidad (ej. <code>ease-in-out</code> para un inicio y fin suaves).</li>
+            </ul>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>CSS</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token selector">.caja-transicion</span> {
+                    <span class="token comment">/* El estado inicial: */</span>
+                    <span class="token property">width</span>: <span class="token string">100px</span>;
+                    <span class="token property">background-color</span>: <span class="token string">blue</span>;
+                    <span class="token comment">/* El movimiento: Queremos que la transición de todas las propiedades dure 0.5s */</span>
+                    <span class="token property">transition</span>: <span class="token string">all 0.5s ease-in-out</span>;
+                }
+
+                <span class="token comment">/* El estado final: Cuando pasa el ratón */</span>
+                <span class="token selector">.caja-transicion:hover</span> {
+                    <span class="token property">width</span>: <span class="token string">150px</span>; <span class="token comment">/* Cambia el ancho de forma suave */</span>
+                    <span class="token property">background-color</span>: <span class="token string">purple</span>; <span class="token comment">/* Cambia el color de forma suave */</span>
+                }
+                </code></pre>
+            </div>
+            <div class="separador_espacio" aria-hidden="true"></div>
+            <h3>11.2 Animaciones Keyframe (El Movimiento Complejo)</h3>
+            <p>
+                Las Animaciones son secuencias de movimiento más avanzadas. Se definen mediante <code>@keyframes</code>, que son puntos de control en la línea de tiempo (0%, 50%, 100%).
+            </p>
+            <div class="code-block">
+                <div class="code-toolbar">
+                    <span>CSS</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+                </div>
+                <pre><code>
+                <span class="token comment">/* CSS: Animación "Pulse" (Latido) */</span>
+                <span class="token comment">/* 1. Definición del Guion: El elemento crece/decrece y emite un brillo. */</span>
+                <span class="token atrule">@keyframes latido</span> {
+                    <span class="token keyframe">0%</span> {
+                        <span class="token property">transform</span>: <span class="token value">scale(1)</span>;
+                        <span class="token property">box-shadow</span>: <span class="token value">0 0 0 rgba(255, 0, 0, 0)</span>;
+                    } <span class="token comment">/* Inicio: Sin cambio de tamaño ni sombra */</span>
+                    <span class="token keyframe">50%</span> {
+                        <span class="token property">transform</span>: <span class="token value">scale(1.05)</span>; <span class="token comment">/* El elemento se agranda un 5% */</span>
+                        <span class="token property">box-shadow</span>: <span class="token value">0 0 20px rgba(255, 0, 0, 0.7)</span>; <span class="token comment">/* Emite un brillo rojo intenso */</span>
+                    }
+                    <span class="token keyframe">100%</span> {
+                        <span class="token property">transform</span>: <span class="token value">scale(1)</span>;
+                        <span class="token property">box-shadow</span>: <span class="token value">0 0 0 rgba(255, 0, 0, 0)</span>;
+                    } <span class="token comment">/* Vuelve al inicio */</span>
+                }
+
+                <span class="token selector">.btn-pulse</span> {
+                    <span class="token comment">/* 2. Aplicación del Guion */</span>
+                    <span class="token property">animation</span>: <span class="token value">latido 2s infinite ease-in-out</span>;
+                }
+                </code></pre>
+            </div>
+        </section>
+    </main>
+    <div class="float-btn" id="floatBtn">☰</div>
+
+    <nav class="float-menu" id="floatMenu"></nav>
+    <script src="../script/script.js"></script>
+</body>
+</html>
